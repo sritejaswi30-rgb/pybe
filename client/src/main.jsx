@@ -40,6 +40,7 @@ function App() {
   const [analytics, setAnalytics] = useState(null);
   const [roadmap, setRoadmap] = useState([]);
   const [w3hData, setW3hData] = useState(null);
+  const [w3hLoading, setW3hLoading] = useState(false);
   const [filters, setFilters] = useState({ q: '', difficulty: '', concept: '' });
   const [form, setForm] = useState({ learnerName: 'Guest learner', reasoning: '', promptText: '', reflection: '' });
   const [activeResult, setActiveResult] = useState(null);
@@ -74,9 +75,11 @@ function App() {
       return;
     }
     const primaryConcept = selected.concepts[0];
+    setW3hLoading(true);
     api(`/concepts/${primaryConcept}`)
       .then(setW3hData)
-      .catch(() => setW3hData(null));
+      .catch(() => setW3hData(null))
+      .finally(() => setW3hLoading(false));
   }, [selected]);
 
   async function submitSession(event) {
@@ -211,14 +214,19 @@ function App() {
             {!activeResult ? <EmptyResult /> : <Result result={activeResult} />}
           </section>
 
-          <section className="panel w3h-panel">
+          <section className="panel w3h-panel" aria-label="W3H Concept Guide">
             <div className="section-title">
               <BookOpen size={20} />
               <h2>W3H Guide</h2>
             </div>
-            {!w3hData ? (
+            {w3hLoading ? (
+              <div className="w3h-loading" role="status" aria-live="polite">
+                <div className="w3h-spinner"></div>
+                <p>Loading concept guide...</p>
+              </div>
+            ) : !w3hData ? (
               <div className="w3h-empty">
-                <Lightbulb size={24} />
+                <Lightbulb size={32} />
                 <p>Select a scenario to see its concept guide.</p>
               </div>
             ) : (
@@ -335,62 +343,107 @@ function SessionList({ sessions }) {
 }
 
 function W3hGuide({ data }) {
-  const [expanded, setExpanded] = useState({});
+  const [expanded, setExpanded] = useState({ what: true, why: true });
 
-  const toggle = (key) => setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  const toggle = (key) => {
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleKeyDown = (e, key) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle(key);
+    }
+  };
+
+  const sectionIcons = {
+    what: '📘',
+    why: '💡',
+    where: '🌍',
+    how: '⚙️',
+  };
 
   const sections = [
-    { key: 'what', icon: BookOpen, label: 'What is it?', content: data.w3h?.what },
-    { key: 'why', icon: Zap, label: 'Why is it used?', content: data.w3h?.why },
-    { key: 'where', icon: MapPin, label: 'Where is it used?', content: data.w3h?.where },
-    { key: 'how', icon: Flag, label: 'How is it used?', content: data.w3h?.how },
+    { key: 'what', label: 'What is it?', content: data.w3h?.what },
+    { key: 'why', label: 'Why is it used?', content: data.w3h?.why },
+    { key: 'where', label: 'Where is it used?', content: data.w3h?.where },
+    { key: 'how', label: 'How is it used?', content: data.w3h?.how },
   ];
 
   return (
-    <div className="w3h-content">
-      <div className="w3h-difficulty">{data.difficulty}</div>
+    <div className="w3h-content" role="region" aria-label="Concept Guide">
+      <div className="w3h-header">
+        <span className="w3h-difficulty" aria-label={`Difficulty: ${data.difficulty}`}>{data.difficulty}</span>
+        <h3 className="w3h-title">{data.title}</h3>
+      </div>
 
-      {sections.map(({ key, icon: Icon, label, content }) => {
-        if (!content) return null;
-        const isArray = Array.isArray(content);
-        const isExpanded = expanded[key];
+      <div className="w3h-sections">
+        {sections.map(({ key, label, content }) => {
+          if (!content) return null;
+          const isArray = Array.isArray(content);
+          const isExpanded = expanded[key];
 
-        return (
-          <div key={key} className="w3h-section">
-            <button className="w3h-section-header" onClick={() => toggle(key)}>
-              <span className="w3h-section-title">
-                <Icon size={16} />
-                {label}
-              </span>
-              {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
-            {isExpanded && (
-              <div className="w3h-section-body">
-                {isArray ? (
-                  <ul>{content.map((item, i) => <li key={i}>{item}</li>)}</ul>
-                ) : (
-                  <p>{content}</p>
-                )}
-                {key === 'how' && data.w3h?.example && (
-                  <pre className="w3h-example">{data.w3h.example}</pre>
-                )}
-              </div>
-            )}
-          </div>
-        );
-      })}
+          return (
+            <div key={key} className="w3h-section">
+              <button
+                className="w3h-section-header"
+                onClick={() => toggle(key)}
+                onKeyDown={(e) => handleKeyDown(e, key)}
+                aria-expanded={isExpanded}
+                aria-controls={`w3h-section-${key}`}
+                type="button"
+              >
+                <span className="w3h-section-title">
+                  <span className="w3h-icon" aria-hidden="true">{sectionIcons[key]}</span>
+                  {label}
+                </span>
+                <span className="w3h-chevron" aria-hidden="true">
+                  {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </span>
+              </button>
+              {isExpanded && (
+                <div
+                  id={`w3h-section-${key}`}
+                  className="w3h-section-body"
+                  role="region"
+                  aria-labelledby={`w3h-btn-${key}`}
+                >
+                  {isArray ? (
+                    <ul className="w3h-list">
+                      {content.map((item, i) => <li key={i}>{item}</li>)}
+                    </ul>
+                  ) : (
+                    <p className="w3h-text">{content}</p>
+                  )}
+                  {key === 'how' && data.w3h?.example && (
+                    <div className="w3h-example-wrapper">
+                      <code className="w3h-example">{data.w3h.example}</code>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
 
       {data.keyTakeaway && (
-        <div className="w3h-takeaway">
-          <Star size={16} />
-          <strong>Key Takeaway:</strong> {data.keyTakeaway}
+        <div className="w3h-takeaway" role="note">
+          <span aria-hidden="true">⭐</span>
+          <div>
+            <strong>Key Takeaway</strong>
+            <p>{data.keyTakeaway}</p>
+          </div>
         </div>
       )}
 
       {data.commonMistake && (
-        <div className="w3h-mistake">
-          <TrendingDown size={16} />
-          <strong>Common Mistake:</strong> {data.commonMistake}
+        <div className="w3h-mistake" role="alert">
+          <span aria-hidden="true">⚠️</span>
+          <div>
+            <strong>Common Mistake</strong>
+            <p>{data.commonMistake}</p>
+          </div>
         </div>
       )}
     </div>
