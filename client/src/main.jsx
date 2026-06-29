@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import {
   Brain,
   BookOpen,
+  ChartNoAxesCombined,
   ChevronDown,
   ChevronUp,
   Code2,
