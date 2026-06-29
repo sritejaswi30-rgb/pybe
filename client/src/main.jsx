@@ -26,13 +26,41 @@ import './styles.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+const MAX_RETRIES = 3;
+const RETRY_DELAYS = [1000, 3000, 5000];
+
+async function fetchWithRetry(path, options, retries = MAX_RETRIES) {
+  let lastError;
+
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(`${API_URL}${path}`, {
+        headers: { 'Content-Type': 'application/json' },
+        ...options
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `Server error (${response.status})`);
+      }
+
+      return await response.json();
+    } catch (err) {
+      lastError = err;
+      console.error(`API attempt ${attempt}/${retries} failed:`, err.message);
+
+      if (attempt < retries) {
+        const delay = RETRY_DELAYS[attempt - 1] || RETRY_DELAYS[RETRY_DELAYS.length - 1];
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+  }
+
+  throw lastError;
+}
+
 async function api(path, options) {
-  const response = await fetch(`${API_URL}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options
-  });
-  if (!response.ok) throw new Error(await response.text());
-  return response.json();
+  return fetchWithRetry(path, options);
 }
 
 const emotionConfig = {
@@ -65,6 +93,7 @@ function App() {
   const [form, setForm] = useState({ learnerName: 'Guest learner', reasoning: '', promptText: '', reflection: '' });
   const [activeResult, setActiveResult] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [apiError, setApiError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [emotion, setEmotion] = useState(null);
   const [isListening, setIsListening] = useState(false);
@@ -203,19 +232,26 @@ function App() {
   }
 
   async function refresh() {
-    const params = new URLSearchParams(Object.entries(filters).filter(([, value]) => value));
-    const [scenarioData, sessionData, analyticsData, roadmapData] = await Promise.all([
-      api(`/scenarios?${params}`),
-      api('/sessions'),
-      api('/analytics'),
-      api('/roadmap')
-    ]);
-    setScenarios(scenarioData);
-    setSessions(sessionData);
-    setAnalytics(analyticsData);
-    setRoadmap(roadmapData);
-    setSelected((current) => current || scenarioData[0] || null);
-    setLoading(false);
+    try {
+      const params = new URLSearchParams(Object.entries(filters).filter(([, value]) => value));
+      const [scenarioData, sessionData, analyticsData, roadmapData] = await Promise.all([
+        api(`/scenarios?${params}`),
+        api('/sessions'),
+        api('/analytics'),
+        api('/roadmap')
+      ]);
+      setScenarios(scenarioData);
+      setSessions(sessionData);
+      setAnalytics(analyticsData);
+      setRoadmap(roadmapData);
+      setSelected((current) => current || scenarioData[0] || null);
+      setApiError(null);
+      setLoading(false);
+    } catch (err) {
+      console.error('API error:', err);
+      setApiError('Unable to connect to learning engine. Please restart server.');
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -278,6 +314,7 @@ function App() {
   }
 
   if (loading) return <main className="loading">Loading PyBe...</main>;
+  if (apiError) return <main className="error-screen"><div className="error-content"><h1>⚠️</h1><h2>Connection Failed</h2><p>{apiError}</p></div></main>;
 
   return (
     <main className="app-shell">
