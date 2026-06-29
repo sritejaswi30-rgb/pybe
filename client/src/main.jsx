@@ -159,6 +159,8 @@ function App() {
     } catch { return 0; }
   });
 
+  const [xpAnimation, setXpAnimation] = useState(null);
+
   const concepts = useMemo(() => [...new Set(scenarios.flatMap((scenario) => scenario.concepts || []))].sort(), [scenarios]);
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -275,6 +277,8 @@ function App() {
     if (!xpAmount || xpAmount <= 0) return;
     const newXp = xp + xpAmount;
     setXp(newXp);
+    setXpAnimation(xpAmount);
+    setTimeout(() => setXpAnimation(null), 1500);
     try { localStorage.setItem('pybe_xp', newXp.toString()); } catch {}
   }
 
@@ -360,6 +364,18 @@ function App() {
     }
   }
 
+  function handleNextScenario() {
+    const currentIndex = scenarios.findIndex((s) => s._id === selected?._id);
+    if (currentIndex === -1 || currentIndex >= scenarios.length - 1) {
+      setSelected(scenarios[0] || null);
+    } else {
+      setSelected(scenarios[currentIndex + 1]);
+    }
+    setActiveResult(null);
+    setEmotion(null);
+    setW3hData(null);
+  }
+
   if (loading) return <main className="loading">Loading PyBe...</main>;
   if (apiError) return <main className="error-screen"><div className="error-content"><h1>⚠️</h1><h2>Connection Failed</h2><p>{apiError}</p></div></main>;
 
@@ -429,6 +445,7 @@ function App() {
             </span>
             <span className="xp-badge">
               ⭐ {xp}<small>XP</small>
+              {xpAnimation && <span className="xp-animation">+{xpAnimation}</span>}
             </span>
           </div>
         </header>
@@ -518,7 +535,7 @@ function App() {
               <EmotionCompanion emotion={emotion} streak={streak} />
             </div>
             {!activeResult ? <EmptyResult /> : (
-              <Result result={activeResult} />
+              <ResultWithNext result={activeResult} onNext={handleNextScenario} />
             )}
           </section>
 
@@ -604,6 +621,17 @@ function Result({ result }) {
         </div>
       )}
     </div>
+  );
+}
+
+function ResultWithNext({ result, onNext }) {
+  return (
+    <>
+      <Result result={result} />
+      <button className="next-challenge-btn" onClick={onNext}>
+        <Play size={16} /> Next Challenge
+      </button>
+    </>
   );
 }
 
