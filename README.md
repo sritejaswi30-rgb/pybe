@@ -12,7 +12,7 @@ PyBe is a scenario-driven Python learning prototype built from the supplied PRD 
 - Roadmap view covering V0 through V3 from the source documents
 - JSON-file backed API with seed data
 - W³H Concept Guide: Learn what, why, where, and how for each Python concept
-- Motivational messages at the start of each learning session
+- **W³H Panel**: Collapsible sections with Key Takeaway and Common Mistake highlights
 
 ## Tech Stack
 
@@ -73,7 +73,6 @@ npm run dev
 | GET | `/api/concepts` | List all concepts |
 | GET | `/api/concepts?name=variables` | Get concept by name |
 | GET | `/api/concepts/:id` | Get concept by ID |
-| GET | `/api/motivation` | Get random motivation message |
 
 ### Example: Get Concept Guide
 
@@ -116,7 +115,6 @@ pybe/
 │   │   ├── routes/            # API routes
 │   │   │   ├── analytics.js
 │   │   │   ├── concepts.js    # W3H concepts API
-│   │   │   ├── motivation.js
 │   │   │   ├── roadmap.js
 │   │   │   ├── scenarios.js
 │   │   │   └── sessions.js
@@ -165,11 +163,12 @@ Concept schema (stored in `db.json`):
 
 ## Feature Progress
 
-- [x] Motivation System
-- [x] W³H Concept Schema (24 concepts with full W³H content)
+- [ ] Motivation System (in progress on `feature/motivation-system`)
+- [x] W³H Concept Schema (23 concepts with full W³H content)
 - [x] Concept Guide Service
 - [x] Concepts API (GET /api/concepts, GET /api/concepts/:id, GET /api/concepts?name=...)
 - [x] W³H UI Panel (collapsible sections, key takeaway, common mistake)
+- [x] W³H UI Polish & Accessibility
 - [ ] Achievement Badge System
 - [ ] Learning Companion
 - [ ] UI Polish
