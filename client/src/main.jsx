@@ -355,7 +355,6 @@ function App() {
       setEmotion(deriveEmotion(result));
       updateStreak();
       if (result.duolingo?.xp) addXpToTotal(result.duolingo.xp);
-      setForm({ ...form, reasoning: '', promptText: '', reflection: '' });
       await refresh();
     } catch (err) {
       console.error('Session error:', err);
@@ -371,6 +370,13 @@ function App() {
     } else {
       setSelected(scenarios[currentIndex + 1]);
     }
+    setActiveResult(null);
+    setEmotion(null);
+    setW3hData(null);
+    setForm((prev) => ({ ...prev, reasoning: '', promptText: '', reflection: '' }));
+  }
+
+  function handleRetry() {
     setActiveResult(null);
     setEmotion(null);
     setW3hData(null);
@@ -535,7 +541,7 @@ function App() {
               <EmotionCompanion emotion={emotion} streak={streak} />
             </div>
             {!activeResult ? <EmptyResult /> : (
-              <ResultWithNext result={activeResult} onNext={handleNextScenario} />
+              <ResultWithNext result={activeResult} onNext={handleNextScenario} onRetry={handleRetry} />
             )}
           </section>
 
@@ -624,13 +630,28 @@ function Result({ result }) {
   );
 }
 
-function ResultWithNext({ result, onNext }) {
+function ResultWithNext({ result, onNext, onRetry }) {
+  const duolingo = result.duolingo || {};
   return (
     <>
+      <div className={`fast-feedback ff-${duolingo.result || 'partial'}`}>
+        <span className="ff-status">
+          {duolingo.result === 'correct' ? '✅' : duolingo.result === 'partial' ? '🤔' : duolingo.result === 'wrong' ? '❌' : '💡'}
+        </span>
+        <span className="ff-xp">+{duolingo.xp || 0} XP</span>
+        {duolingo.hint && <span className="ff-hint">💡 {duolingo.hint}</span>}
+      </div>
       <Result result={result} />
-      <button className="next-challenge-btn" onClick={onNext}>
-        <Play size={16} /> Next Challenge
-      </button>
+      <div className="result-actions">
+        {duolingo.result !== 'correct' && (
+          <button className="retry-btn" onClick={onRetry}>
+            ↻ Try Again
+          </button>
+        )}
+        <button className="next-challenge-btn" onClick={onNext}>
+          <Play size={16} /> Next Challenge
+        </button>
+      </div>
     </>
   );
 }

@@ -674,6 +674,80 @@ meter {
   100% { transform: scale(1); opacity: 1; }
 }
 
+.fast-feedback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  animation: fastReveal 0.25s ease-out;
+  font-size: 0.95rem;
+}
+
+@keyframes fastReveal {
+  0% { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fast-feedback.ff-correct {
+  background: linear-gradient(135deg, #e8f5e0, #d4edd0);
+  border: 1px solid #7bc74d;
+  color: #2d5a1e;
+}
+
+.fast-feedback.ff-partial {
+  background: linear-gradient(135deg, #fff8e0, #fff3cc);
+  border: 1px solid #e8c97a;
+  color: #5a4a1e;
+}
+
+.fast-feedback.ff-wrong {
+  background: linear-gradient(135deg, #fff0f0, #ffe0e0);
+  border: 1px solid #ee7a7a;
+  color: #5a1e1e;
+}
+
+.ff-status { font-size: 1.3rem; }
+.ff-xp { font-weight: 700; margin-left: auto; }
+.ff-hint { font-size: 0.85rem; opacity: 0.85; }
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.result-actions .next-challenge-btn {
+  flex: 1;
+}
+
+.retry-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #fff8e0, #fff3cc);
+  color: #5a4a1e;
+  border: 2px solid #e8c97a;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: linear-gradient(135deg, #fff3cc, #ffe9a8);
+  border-color: #d4a84a;
+  transform: translateY(-2px);
+}
+
+.retry-btn:active {
+  transform: translateY(0);
+}
+
 @media (max-width: 1050px) {
   .app-shell {
     grid-template-columns: 1fr;
