@@ -25,57 +25,6 @@ select {
   grid-template-columns: 320px 1fr;
 }
 
-.app-nav {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  background: #17231f;
-  color: #f8f4ec;
-  height: 56px;
-  border-bottom: 1px solid #2a3f38;
-}
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: inherit;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.nav-brand:hover {
-  opacity: 0.9;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  color: #b9c7bf;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: all 0.15s ease;
-}
-
-.nav-links a:hover {
-  color: #f8f4ec;
-  background: #24342f;
-}
-
-.nav-links a.active {
-  color: #d8f07c;
-  background: #1f2d28;
-}
-
 .sidebar {
   background: #16231f;
   color: #f8f4ec;
