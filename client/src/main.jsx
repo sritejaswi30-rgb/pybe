@@ -34,6 +34,24 @@ async function api(path, options) {
   return response.json();
 }
 
+const emotionConfig = {
+  happy: { icon: '😊', label: 'Good thinking!', animation: 'bounce' },
+  thinking: { icon: '🤔', label: 'Processing...', animation: 'pulse' },
+  concerned: { icon: '⚠️', label: 'Review this', animation: 'shake' },
+  excited: { icon: '🔥', label: 'Breakthrough!', animation: 'glow' }
+};
+
+function EmotionCompanion({ emotion }) {
+  if (!emotion) return null;
+  const config = emotionConfig[emotion] || emotionConfig.thinking;
+  return (
+    <div className={`emotion-companion emotion-${emotion}`} role="status" aria-live="polite">
+      <span className={`emotion-icon emotion-${config.animation}`}>{config.icon}</span>
+      <span className="emotion-label">{config.label}</span>
+    </div>
+  );
+}
+
 function App() {
   const [scenarios, setScenarios] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -47,8 +65,22 @@ function App() {
   const [activeResult, setActiveResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [emotion, setEmotion] = useState(null);
 
   const concepts = useMemo(() => [...new Set(scenarios.flatMap((scenario) => scenario.concepts || []))].sort(), [scenarios]);
+
+  function deriveEmotion(result) {
+    if (!result) return null;
+    const score = result.promptScore || 0;
+    const misconceptions = result.misconceptions || [];
+    const hasMisconceptions = misconceptions.length > 0;
+    const abstractionCount = result.abstractionMap?.length || 0;
+
+    if (score >= 75 && !hasMisconceptions && abstractionCount >= 1) return 'excited';
+    if (score >= 50 && !hasMisconceptions) return 'happy';
+    if (score >= 35 || (hasMisconceptions && score >= 30)) return 'thinking';
+    return 'concerned';
+  }
 
   async function refresh() {
     const params = new URLSearchParams(Object.entries(filters).filter(([, value]) => value));
@@ -106,14 +138,18 @@ function App() {
     event.preventDefault();
     if (!selected || !form.reasoning.trim()) return;
     setSubmitting(true);
+    setEmotion(null);
     try {
       const result = await api('/sessions', {
         method: 'POST',
         body: JSON.stringify({ ...form, scenarioId: selected._id })
       });
       setActiveResult(result);
+      setEmotion(deriveEmotion(result));
       setForm({ ...form, reasoning: '', promptText: '', reflection: '' });
       await refresh();
+    } catch (err) {
+      console.error('Session error:', err);
     } finally {
       setSubmitting(false);
     }
@@ -161,6 +197,7 @@ function App() {
               onClick={() => {
                 setSelected(scenario);
                 setActiveResult(null);
+                setEmotion(null);
               }}
             >
               <span>{scenario.difficulty}</span>
@@ -230,6 +267,7 @@ function App() {
             <div className="section-title">
               <Sparkles size={20} />
               <h2>AI Mentor Output</h2>
+              <EmotionCompanion emotion={emotion} />
             </div>
             {!activeResult ? <EmptyResult /> : (
               <Result result={activeResult} />

@@ -856,3 +856,81 @@ meter {
     align-items: flex-start;
   }
 }
+
+.emotion-companion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 6px 12px;
+  background: #f9f6f0;
+  border-radius: 999px;
+  animation: emotionAppear 0.4s ease-out;
+}
+
+.emotion-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.emotion-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #53615c;
+}
+
+@keyframes emotionAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.emotion-happy .emotion-icon {
+  animation: bounce 0.6s ease-out;
+}
+
+.emotion-thinking .emotion-icon {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.emotion-concerned .emotion-icon {
+  animation: shake 0.5s ease-in-out;
+}
+
+.emotion-excited .emotion-icon {
+  animation: glow 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-6px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-3px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.85; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(255, 180, 0, 0.5)); }
+  50% { filter: drop-shadow(0 0 8px rgba(255, 180, 0, 0.9)); }
+}
+
+.result-panel .section-title {
+  flex-wrap: wrap;
+}
