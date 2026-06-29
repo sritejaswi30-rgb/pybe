@@ -6,19 +6,27 @@ const router = express.Router();
 router.get('/', async (_req, res, next) => {
   try {
     const [sessions, db] = await Promise.all([store.listSessions(), store.readDb()]);
-    const scenarioCount = db.scenarios.length;
+    const scenarioCount = (db.scenarios && db.scenarios.length) || 0;
     const conceptCounts = {};
     const misconceptionCounts = {};
     let promptTotal = 0;
 
     sessions.forEach((session) => {
       promptTotal += session.promptScore || 0;
-      session.abstractionMap.forEach((map) => {
-        conceptCounts[map.pythonConcept] = (conceptCounts[map.pythonConcept] || 0) + 1;
-      });
-      session.misconceptions.forEach((item) => {
-        misconceptionCounts[item] = (misconceptionCounts[item] || 0) + 1;
-      });
+      if (Array.isArray(session.abstractionMap)) {
+        session.abstractionMap.forEach((map) => {
+          if (map && map.pythonConcept) {
+            conceptCounts[map.pythonConcept] = (conceptCounts[map.pythonConcept] || 0) + 1;
+          }
+        });
+      }
+      if (Array.isArray(session.misconceptions)) {
+        session.misconceptions.forEach((item) => {
+          if (item) {
+            misconceptionCounts[item] = (misconceptionCounts[item] || 0) + 1;
+          }
+        });
+      }
     });
 
     res.json({

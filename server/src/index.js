@@ -22,9 +22,19 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/roadmap', roadmapRoutes);
 app.use('/api/concepts', conceptRoutes);
 
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled Rejection:', reason);
+});
+
 app.use((error, _req, res, _next) => {
   console.error(error);
-  res.status(error.status || 500).json({ message: error.message || 'Server error' });
+  const status = error.status || error.statusCode || 500;
+  const message = status === 500 ? 'Internal server error' : error.message || 'Server error';
+  res.status(status).json({ error: message, safe: true });
 });
 
 app.listen(port, () => console.log(`PyBe API running on http://localhost:${port}`));
