@@ -23,11 +23,17 @@ app.use('/api/roadmap', roadmapRoutes);
 app.use('/api/concepts', conceptRoutes);
 
 process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception:', err);
+  console.error('FATAL: Uncaught Exception -', err.message);
+  console.error('Stack:', err.stack);
+  process.exit(1);
 });
 
 process.on('unhandledRejection', (reason) => {
-  console.error('Unhandled Rejection:', reason);
+  console.error('FATAL: Unhandled Rejection -', reason);
+  if (reason instanceof Error) {
+    console.error('Stack:', reason.stack);
+  }
+  process.exit(1);
 });
 
 app.use((error, _req, res, _next) => {
@@ -37,4 +43,16 @@ app.use((error, _req, res, _next) => {
   res.status(status).json({ error: message, safe: true });
 });
 
-app.listen(port, () => console.log(`PyBe API running on http://localhost:${port}`));
+const server = app.listen(port, () => {
+  console.log(`[PYBE] Backend running on http://localhost:${port}`);
+  console.log(`[PYBE] Health check: http://localhost:${port}/api/health`);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`[PYBE] ERROR: Port ${port} is already in use`);
+  } else {
+    console.error('[PYBE] Server error:', err);
+  }
+  process.exit(1);
+});
