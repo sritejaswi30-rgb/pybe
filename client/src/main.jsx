@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from 'react-router-dom';
 import {
   Brain,
   BookOpen,
@@ -9,12 +10,12 @@ import {
   Code2,
   Compass,
   Flag,
+  Home,
   Lightbulb,
   MapPin,
   MessageSquareText,
   Mic,
   Play,
-  Route,
   Search,
   Send,
   Sparkles,
@@ -194,6 +195,16 @@ function App() {
 
   return (
     <main className="app-shell">
+      <nav className="app-nav">
+        <Link to="/" className="nav-brand">
+          <Brain size={24} />
+          <span>PyBe</span>
+        </Link>
+        <div className="nav-links">
+          <Link to="/">Scenarios</Link>
+          <Link to="/dashboard">Dashboard</Link>
+        </div>
+      </nav>
       <aside className="sidebar">
         <div className="brand">
           <Brain size={30} />
@@ -340,7 +351,7 @@ function App() {
             <Analytics analytics={analytics} />
           </div>
           <div className="panel">
-            <div className="section-title"><Route size={20} /><h2>Roadmap</h2></div>
+            <div className="section-title"><MapPin size={20} /><h2>Roadmap</h2></div>
             <Roadmap roadmap={roadmap} />
           </div>
           <div className="panel">
@@ -551,4 +562,8 @@ function W3hGuide({ data, mentorFeedback }) {
   );
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
