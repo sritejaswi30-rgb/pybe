@@ -2,16 +2,23 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   Brain,
-  ChartNoAxesCombined,
+  BookOpen,
+  ChevronDown,
+  ChevronUp,
   Code2,
   Compass,
+  Flag,
   Lightbulb,
+  MapPin,
   MessageSquareText,
   Play,
   Route,
   Search,
   Send,
-  Sparkles
+  Sparkles,
+  Star,
+  TrendingDown,
+  Zap
 } from 'lucide-react';
 import './styles.css';
 
@@ -32,6 +39,7 @@ function App() {
   const [sessions, setSessions] = useState([]);
   const [analytics, setAnalytics] = useState(null);
   const [roadmap, setRoadmap] = useState([]);
+  const [w3hData, setW3hData] = useState(null);
   const [filters, setFilters] = useState({ q: '', difficulty: '', concept: '' });
   const [form, setForm] = useState({ learnerName: 'Guest learner', reasoning: '', promptText: '', reflection: '' });
   const [activeResult, setActiveResult] = useState(null);
@@ -59,6 +67,17 @@ function App() {
   useEffect(() => {
     refresh().catch(console.error);
   }, [filters.q, filters.difficulty, filters.concept]);
+
+  useEffect(() => {
+    if (!selected?.concepts?.length) {
+      setW3hData(null);
+      return;
+    }
+    const primaryConcept = selected.concepts[0];
+    api(`/concepts/${primaryConcept}`)
+      .then(setW3hData)
+      .catch(() => setW3hData(null));
+  }, [selected]);
 
   async function submitSession(event) {
     event.preventDefault();
@@ -191,6 +210,21 @@ function App() {
             </div>
             {!activeResult ? <EmptyResult /> : <Result result={activeResult} />}
           </section>
+
+          <section className="panel w3h-panel">
+            <div className="section-title">
+              <BookOpen size={20} />
+              <h2>W3H Guide</h2>
+            </div>
+            {!w3hData ? (
+              <div className="w3h-empty">
+                <Lightbulb size={24} />
+                <p>Select a scenario to see its concept guide.</p>
+              </div>
+            ) : (
+              <W3hGuide data={w3hData} />
+            )}
+          </section>
         </div>
 
         <section className="dashboard">
@@ -296,6 +330,69 @@ function SessionList({ sessions }) {
           </div>
         </article>
       )) : <p>No sessions yet.</p>}
+    </div>
+  );
+}
+
+function W3hGuide({ data }) {
+  const [expanded, setExpanded] = useState({});
+
+  const toggle = (key) => setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+
+  const sections = [
+    { key: 'what', icon: BookOpen, label: 'What is it?', content: data.w3h?.what },
+    { key: 'why', icon: Zap, label: 'Why is it used?', content: data.w3h?.why },
+    { key: 'where', icon: MapPin, label: 'Where is it used?', content: data.w3h?.where },
+    { key: 'how', icon: Flag, label: 'How is it used?', content: data.w3h?.how },
+  ];
+
+  return (
+    <div className="w3h-content">
+      <div className="w3h-difficulty">{data.difficulty}</div>
+
+      {sections.map(({ key, icon: Icon, label, content }) => {
+        if (!content) return null;
+        const isArray = Array.isArray(content);
+        const isExpanded = expanded[key];
+
+        return (
+          <div key={key} className="w3h-section">
+            <button className="w3h-section-header" onClick={() => toggle(key)}>
+              <span className="w3h-section-title">
+                <Icon size={16} />
+                {label}
+              </span>
+              {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </button>
+            {isExpanded && (
+              <div className="w3h-section-body">
+                {isArray ? (
+                  <ul>{content.map((item, i) => <li key={i}>{item}</li>)}</ul>
+                ) : (
+                  <p>{content}</p>
+                )}
+                {key === 'how' && data.w3h?.example && (
+                  <pre className="w3h-example">{data.w3h.example}</pre>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
+
+      {data.keyTakeaway && (
+        <div className="w3h-takeaway">
+          <Star size={16} />
+          <strong>Key Takeaway:</strong> {data.keyTakeaway}
+        </div>
+      )}
+
+      {data.commonMistake && (
+        <div className="w3h-mistake">
+          <TrendingDown size={16} />
+          <strong>Common Mistake:</strong> {data.commonMistake}
+        </div>
+      )}
     </div>
   );
 }
