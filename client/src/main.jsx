@@ -70,18 +70,37 @@ function App() {
     refresh().catch(console.error);
   }, [filters.q, filters.difficulty, filters.concept]);
 
+  const activeResultId = activeResult?._id;
+
   useEffect(() => {
-    if (!selected?.concepts?.length) {
+    if (!activeResultId) {
       setW3hData(null);
       return;
     }
-    const primaryConcept = selected.concepts[0];
+    if (!activeResult?.abstractionMap?.length) {
+      setW3hData(null);
+      return;
+    }
+    const rawConcept = activeResult.abstractionMap[0]?.pythonConcept || '';
+    const conceptMap = {
+      'for / while loops': 'loops',
+      'if / elif / else': 'conditionals',
+      'lists and dictionaries': 'lists',
+      'variables and arithmetic expressions': 'variables',
+      'comparisons and list comprehensions': 'comparisons',
+      'statements and variables': 'variables'
+    };
+    const primaryConcept = (conceptMap[rawConcept] || rawConcept.toLowerCase().split(' ')[0].replace(/[^a-z]/g, ''));
+    if (!primaryConcept) {
+      setW3hData(null);
+      return;
+    }
     setW3hLoading(true);
     api(`/concepts/${primaryConcept}`)
       .then(setW3hData)
       .catch(() => setW3hData(null))
       .finally(() => setW3hLoading(false));
-  }, [selected]);
+  }, [activeResultId]);
 
   async function submitSession(event) {
     event.preventDefault();
@@ -212,28 +231,22 @@ function App() {
               <Sparkles size={20} />
               <h2>AI Mentor Output</h2>
             </div>
-            {!activeResult ? <EmptyResult /> : <Result result={activeResult} />}
-          </section>
-
-          <section className="panel w3h-panel" aria-label="W3H Concept Guide">
-            <div className="section-title">
-              <BookOpen size={20} />
-              <h2>W3H Guide</h2>
-            </div>
-            {w3hLoading ? (
-              <div className="w3h-loading" role="status" aria-live="polite">
-                <div className="w3h-spinner"></div>
-                <p>Loading concept guide...</p>
-              </div>
-            ) : !w3hData ? (
-              <div className="w3h-empty">
-                <Lightbulb size={32} />
-                <p>Select a scenario to see its concept guide.</p>
-              </div>
-            ) : (
-              <W3hGuide data={w3hData} />
+            {!activeResult ? <EmptyResult /> : (
+              <Result result={activeResult} />
             )}
           </section>
+
+          {activeResult && w3hData && (
+            <section className="panel w3h-panel" aria-label="W3H Concept Guide">
+              <div className="section-title">
+                <Lightbulb size={20} />
+                <h2>W3H Guide</h2>
+              </div>
+              <div className="w3h-content-wrapper">
+                <W3hGuide data={w3hData} mentorFeedback={activeResult} />
+              </div>
+            </section>
+          )}
         </div>
 
         <section className="dashboard">
@@ -343,8 +356,8 @@ function SessionList({ sessions }) {
   );
 }
 
-function W3hGuide({ data }) {
-  const [expanded, setExpanded] = useState({ what: true, why: true });
+function W3hGuide({ data, mentorFeedback }) {
+  const [expanded, setExpanded] = useState({ what: true, why: true, where: true, how: true });
 
   const toggle = (key) => {
     setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -365,17 +378,20 @@ function W3hGuide({ data }) {
   };
 
   const sections = [
-    { key: 'what', label: 'What is it?', content: data.w3h?.what },
-    { key: 'why', label: 'Why is it used?', content: data.w3h?.why },
-    { key: 'where', label: 'Where is it used?', content: data.w3h?.where },
-    { key: 'how', label: 'How is it used?', content: data.w3h?.how },
+    { key: 'what', label: 'What is it?', content: data?.w3h?.what },
+    { key: 'why', label: 'Why is it used?', content: data?.w3h?.why },
+    { key: 'where', label: 'Where is it used?', content: data?.w3h?.where },
+    { key: 'how', label: 'How does it work?', content: data?.w3h?.how },
   ];
 
+  const primaryConcept = mentorFeedback?.abstractionMap?.[0]?.pythonConcept || data?.title || 'Concept';
+
+  if (!data) return null;
+
   return (
-    <div className="w3h-content" role="region" aria-label="Concept Guide">
+    <div className="w3h-guide-content" role="region" aria-label="Concept Guide">
       <div className="w3h-header">
-        <span className="w3h-difficulty" aria-label={`Difficulty: ${data.difficulty}`}>{data.difficulty}</span>
-        <h3 className="w3h-title">{data.title}</h3>
+        <h3>Learn More About <strong>{primaryConcept}</strong></h3>
       </div>
 
       <div className="w3h-sections">
@@ -407,7 +423,6 @@ function W3hGuide({ data }) {
                   id={`w3h-section-${key}`}
                   className="w3h-section-body"
                   role="region"
-                  aria-labelledby={`w3h-btn-${key}`}
                 >
                   {isArray ? (
                     <ul className="w3h-list">
@@ -416,7 +431,7 @@ function W3hGuide({ data }) {
                   ) : (
                     <p className="w3h-text">{content}</p>
                   )}
-                  {key === 'how' && data.w3h?.example && (
+                  {key === 'how' && data?.w3h?.example && (
                     <div className="w3h-example-wrapper">
                       <code className="w3h-example">{data.w3h.example}</code>
                     </div>
@@ -428,7 +443,7 @@ function W3hGuide({ data }) {
         })}
       </div>
 
-      {data.keyTakeaway && (
+      {data?.keyTakeaway && (
         <div className="w3h-takeaway" role="note">
           <span aria-hidden="true">⭐</span>
           <div>
@@ -438,7 +453,7 @@ function W3hGuide({ data }) {
         </div>
       )}
 
-      {data.commonMistake && (
+      {data?.commonMistake && (
         <div className="w3h-mistake" role="alert">
           <span aria-hidden="true">⚠️</span>
           <div>
