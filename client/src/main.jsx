@@ -12,6 +12,7 @@ import {
   Lightbulb,
   MapPin,
   MessageSquareText,
+  Mic,
   Play,
   Route,
   Search,
@@ -66,8 +67,42 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [emotion, setEmotion] = useState(null);
+  const [isListening, setIsListening] = useState(false);
 
   const concepts = useMemo(() => [...new Set(scenarios.flatMap((scenario) => scenario.concepts || []))].sort(), [scenarios]);
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  function toggleVoiceInput() {
+    if (!SpeechRecognition) return;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    if (isListening) {
+      recognition.stop();
+      setIsListening(false);
+      return;
+    }
+
+    setIsListening(true);
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setForm((prev) => ({ ...prev, reasoning: prev.reasoning + transcript }));
+      setIsListening(false);
+    };
+
+    recognition.onerror = () => {
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+  }
 
   function deriveEmotion(result) {
     if (!result) return null;
@@ -232,14 +267,26 @@ function App() {
               {selected?.objectives.map((item) => <span key={item}>{item}</span>)}
             </div>
             <form onSubmit={submitSession} className="learning-form">
-              <label>
+              <label className="reasoning-label">
                 Your reasoning
-                <textarea
-                  required
-                  value={form.reasoning}
-                  onChange={(event) => setForm({ ...form, reasoning: event.target.value })}
-                  placeholder={selected?.prompt}
-                />
+                <div className="reasoning-input-row">
+                  <textarea
+                    required
+                    value={form.reasoning}
+                    onChange={(event) => setForm({ ...form, reasoning: event.target.value })}
+                    placeholder={selected?.prompt}
+                  />
+                  <button
+                    type="button"
+                    className={`voice-btn ${isListening ? 'listening' : ''}`}
+                    onClick={toggleVoiceInput}
+                    aria-label={isListening ? 'Stop recording' : 'Start voice input'}
+                    title={SpeechRecognition ? 'Voice input' : 'Voice not supported'}
+                    disabled={!SpeechRecognition}
+                  >
+                    <Mic size={18} />
+                  </button>
+                </div>
               </label>
               <label>
                 Prompt you would give an AI mentor
