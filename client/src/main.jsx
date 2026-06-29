@@ -26,15 +26,32 @@ import './styles.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-const MAX_RETRIES = 3;
-const RETRY_DELAYS = [1000, 3000, 5000];
+const MAX_RETRIES = 2;
+const RETRY_DELAYS = [1000, 3000];
+const FETCH_TIMEOUT = 5000;
+
+async function fetchWithTimeout(url, options, timeout = FETCH_TIMEOUT) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    clearTimeout(timeoutId);
+    return response;
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err.name === 'AbortError') {
+      throw new Error('Request timeout');
+    }
+    throw err;
+  }
+}
 
 async function fetchWithRetry(path, options, retries = MAX_RETRIES) {
   let lastError;
 
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      const response = await fetch(`${API_URL}${path}`, {
+      const response = await fetchWithTimeout(`${API_URL}${path}`, {
         headers: { 'Content-Type': 'application/json' },
         ...options
       });
@@ -59,8 +76,38 @@ async function fetchWithRetry(path, options, retries = MAX_RETRIES) {
   throw lastError;
 }
 
-async function api(path, options) {
+function api(path, options) {
   return fetchWithRetry(path, options);
+}
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('React ErrorBoundary caught:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <main className="error-screen">
+          <div className="error-content">
+            <h1>⚠️</h1>
+            <h2>Something went wrong</h2>
+            <p>Please refresh the page or restart the application.</p>
+          </div>
+        </main>
+      );
+    }
+    return this.props.children;
+  }
 }
 
 const emotionConfig = {
@@ -718,4 +765,8 @@ function W3hGuide({ data, mentorFeedback }) {
   );
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+createRoot(document.getElementById('root')).render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
+);
