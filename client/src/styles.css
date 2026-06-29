@@ -228,6 +228,15 @@ select {
   50% { box-shadow: 0 0 20px rgba(150, 50, 255, 1); }
 }
 
+.xp-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3d2800, #5a3d00);
+  color: #ffd700;
+}
+
 h2,
 h3,
 p {
@@ -379,6 +388,58 @@ textarea {
 .score span {
   font-size: 3rem;
   font-weight: 900;
+}
+
+.duolingo-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.duolingo-block.duo-correct {
+  background: linear-gradient(135deg, #e8f5e0, #d4edd0);
+  border: 1px solid #7bc74d;
+}
+
+.duolingo-block.duo-partial {
+  background: linear-gradient(135deg, #fff8e0, #fff3cc);
+  border: 1px solid #e8c97a;
+}
+
+.duolingo-block.duo-wrong {
+  background: linear-gradient(135deg, #fff0f0, #ffe0e0);
+  border: 1px solid #ee7a7a;
+}
+
+.duo-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.duo-content {
+  flex: 1;
+}
+
+.duo-feedback {
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #17201d;
+}
+
+.duo-hint {
+  font-size: 0.82rem;
+  color: #53615c;
+}
+
+.duo-xp {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #b8860b;
+  flex-shrink: 0;
 }
 
 .mapping {

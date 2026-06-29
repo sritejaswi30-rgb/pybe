@@ -106,4 +106,27 @@ function masterySignals(maps, promptScore) {
   return signals;
 }
 
-module.exports = { mapReasoning, generateCode, explainCode, evaluatePrompt, detectMisconceptions, masterySignals };
+function getDuolingoFeedback(promptScore, misconceptions, reasoning) {
+  let result, feedback, hint, xp;
+
+  if (promptScore >= 65 && (!misconceptions || misconceptions.length === 0)) {
+    result = 'correct';
+    feedback = 'Great reasoning! You mapped the pattern correctly.';
+    hint = 'Try applying this to a related scenario.';
+    xp = 10;
+  } else if (promptScore >= 40) {
+    result = 'partial';
+    feedback = 'Good start! Your reasoning captures some key elements.';
+    hint = 'Focus on connecting inputs, process, and expected output.';
+    xp = 5;
+  } else {
+    result = 'wrong';
+    feedback = 'Let\'s think through this differently.';
+    hint = 'Start by identifying what values you need to remember.';
+    xp = 0;
+  }
+
+  return { result, feedback, hint, xp };
+}
+
+module.exports = { mapReasoning, generateCode, explainCode, evaluatePrompt, detectMisconceptions, masterySignals, getDuolingoFeedback };

@@ -21,6 +21,9 @@ router.post('/', async (req, res, next) => {
     const abstractionMap = engine.mapReasoning(req.body.reasoning);
     const generatedCode = engine.generateCode(scenario, abstractionMap);
     const prompt = engine.evaluatePrompt(req.body.promptText);
+    const misconceptions = engine.detectMisconceptions(req.body.reasoning);
+    const duolingo = engine.getDuolingoFeedback(prompt.score, misconceptions, req.body.reasoning);
+
     const session = await store.addSession({
       learnerName: req.body.learnerName || 'Guest learner',
       scenario: scenario._id,
@@ -32,8 +35,9 @@ router.post('/', async (req, res, next) => {
       promptScore: prompt.score,
       promptFeedback: prompt.feedback,
       reflection: req.body.reflection || '',
-      misconceptions: engine.detectMisconceptions(req.body.reasoning),
-      masterySignals: engine.masterySignals(abstractionMap, prompt.score)
+      misconceptions,
+      masterySignals: engine.masterySignals(abstractionMap, prompt.score),
+      duolingo
     });
     res.status(201).json(session);
   } catch (error) {

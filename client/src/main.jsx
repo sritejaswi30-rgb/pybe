@@ -76,6 +76,13 @@ function App() {
     } catch { return { current: 0, lastActive: null, freezeTokens: 3, milestones: [] }; }
   });
 
+  const [xp, setXp] = useState(() => {
+    try {
+      const saved = localStorage.getItem('pybe_xp');
+      return saved ? parseInt(saved, 10) : 0;
+    } catch { return 0; }
+  });
+
   const concepts = useMemo(() => [...new Set(scenarios.flatMap((scenario) => scenario.concepts || []))].sort(), [scenarios]);
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -114,11 +121,14 @@ function App() {
 
   function deriveEmotion(result) {
     if (!result) return null;
+    const duolingoResult = result.duolingo?.result;
+    if (duolingoResult === 'correct') return 'happy';
+    if (duolingoResult === 'partial') return 'thinking';
+    if (duolingoResult === 'wrong') return 'concerned';
     const score = result.promptScore || 0;
     const misconceptions = result.misconceptions || [];
     const hasMisconceptions = misconceptions.length > 0;
     const abstractionCount = result.abstractionMap?.length || 0;
-
     if (score >= 75 && !hasMisconceptions && abstractionCount >= 1) return 'excited';
     if (score >= 50 && !hasMisconceptions) return 'happy';
     if (score >= 35 || (hasMisconceptions && score >= 30)) return 'thinking';
@@ -183,6 +193,13 @@ function App() {
     if (emotion === 'excited') return `We're on fire for ${streakCount} days!`;
     if (emotion === 'happy') return "We're building something strong here!";
     return `Amazing ${streakCount}-day momentum!`;
+  }
+
+  function addXpToTotal(xpAmount) {
+    if (!xpAmount || xpAmount <= 0) return;
+    const newXp = xp + xpAmount;
+    setXp(newXp);
+    try { localStorage.setItem('pybe_xp', newXp.toString()); } catch {}
   }
 
   async function refresh() {
@@ -250,6 +267,7 @@ function App() {
       setActiveResult(result);
       setEmotion(deriveEmotion(result));
       updateStreak();
+      if (result.duolingo?.xp) addXpToTotal(result.duolingo.xp);
       setForm({ ...form, reasoning: '', promptText: '', reflection: '' });
       await refresh();
     } catch (err) {
@@ -324,6 +342,9 @@ function App() {
             <span>{analytics?.averagePromptScore || 0}<small>Prompt score</small></span>
             <span className={`streak-badge streak-${getStreakAura(streak.current)}`}>
               🔥 {streak.current}<small>Day Streak</small>
+            </span>
+            <span className="xp-badge">
+              ⭐ {xp}<small>XP</small>
             </span>
           </div>
         </header>
@@ -459,8 +480,21 @@ function EmptyResult() {
 }
 
 function Result({ result }) {
+  const duolingo = result.duolingo || {};
+  const resultIcon = duolingo.result === 'correct' ? '✅' : duolingo.result === 'partial' ? '🤔' : duolingo.result === 'wrong' ? '❌' : '💡';
+
   return (
     <div className="result-stack">
+      {duolingo.result && (
+        <div className={`duolingo-block duo-${duolingo.result}`}>
+          <span className="duo-icon">{resultIcon}</span>
+          <div className="duo-content">
+            <p className="duo-feedback">{duolingo.feedback}</p>
+            {duolingo.hint && <small className="duo-hint">💡 {duolingo.hint}</small>}
+          </div>
+          <div className="duo-xp">+{duolingo.xp || 0} XP</div>
+        </div>
+      )}
       <div className="score"><span>{result.promptScore}</span><small>Prompt maturity</small></div>
       <div>
         {result.abstractionMap.map((item) => (
