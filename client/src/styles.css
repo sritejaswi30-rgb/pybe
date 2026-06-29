@@ -203,6 +203,31 @@ select {
   margin-bottom: 16px;
 }
 
+.streak-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #24342f;
+  color: #f8f4ec;
+}
+
+.streak-badge.streak-neutral { background: #24342f; }
+.streak-badge.streak-spark { background: linear-gradient(135deg, #4a3f00, #7a6500); }
+.streak-badge.streak-builder { background: linear-gradient(135deg, #7a3f00, #a05000); }
+.streak-badge.streak-master { background: linear-gradient(135deg, #7a1f00, #a03000); animation: auraMaster 2s ease-in-out infinite; }
+.streak-badge.streak-legend { background: linear-gradient(135deg, #4a1f7a, #7020a0); animation: auraLegend 1.5s ease-in-out infinite; }
+
+@keyframes auraMaster {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 100, 0, 0.5); }
+  50% { box-shadow: 0 0 15px rgba(255, 100, 0, 0.9); }
+}
+
+@keyframes auraLegend {
+  0%, 100% { box-shadow: 0 0 8px rgba(150, 50, 255, 0.6); }
+  50% { box-shadow: 0 0 20px rgba(150, 50, 255, 1); }
+}
+
 h2,
 h3,
 p {
@@ -325,6 +350,73 @@ textarea {
 @keyframes voicePulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
+}
+
+.mentor-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.mentor-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: #f4f1ea;
+  border: 1px solid #d4cdc0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
+}
+
+.mentor-btn:hover {
+  background: #e8e4db;
+  transform: translateY(-2px);
+}
+
+.mentor-btn.active {
+  background: #17231f;
+  color: #f8f4ec;
+  border-color: #17231f;
+}
+
+.mentor-icon {
+  font-size: 1.2rem;
+}
+
+.mentor-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.mentor-feedback {
+  background: linear-gradient(135deg, #f9f6f0, #f4f1ea);
+  border: 1px solid #e8e4db;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.mentor-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #53615c;
+}
+
+.mentor-feedback p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  color: #17201d;
+}
+
+.mentor-feedback small {
+  font-size: 0.8rem;
+  color: #7b867f;
+  font-style: italic;
 }
 
 .empty {

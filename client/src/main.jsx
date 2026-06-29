@@ -42,7 +42,7 @@ const emotionConfig = {
   excited: { icon: '🔥', label: 'Breakthrough!', animation: 'glow' }
 };
 
-function EmotionCompanion({ emotion }) {
+function EmotionCompanion({ emotion, streak }) {
   if (!emotion) return null;
   const config = emotionConfig[emotion] || emotionConfig.thinking;
   return (
@@ -68,6 +68,14 @@ function App() {
   const [submitting, setSubmitting] = useState(false);
   const [emotion, setEmotion] = useState(null);
   const [isListening, setIsListening] = useState(false);
+  const [activeMentor, setActiveMentor] = useState('logic');
+
+  const [streak, setStreak] = useState(() => {
+    try {
+      const saved = localStorage.getItem('pybe_streak');
+      return saved ? JSON.parse(saved) : { current: 0, lastActive: null, freezeTokens: 3, milestones: [] };
+    } catch { return { current: 0, lastActive: null, freezeTokens: 3, milestones: [] }; }
+  });
 
   const concepts = useMemo(() => [...new Set(scenarios.flatMap((scenario) => scenario.concepts || []))].sort(), [scenarios]);
 
@@ -115,6 +123,119 @@ function App() {
     if (score >= 50 && !hasMisconceptions) return 'happy';
     if (score >= 35 || (hasMisconceptions && score >= 30)) return 'thinking';
     return 'concerned';
+  }
+
+  function getToday() {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  function updateStreak() {
+    const today = getToday();
+    const { current, lastActive, freezeTokens, milestones } = streak;
+
+    if (lastActive === today) return streak;
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+    let newStreak = current;
+    let newFreeze = freezeTokens;
+
+    if (lastActive === yesterdayStr) {
+      newStreak = current + 1;
+    } else if (lastActive !== today) {
+      if (lastActive && freezeTokens > 0) {
+        newFreeze = freezeTokens - 1;
+        newStreak = current + 1;
+      } else {
+        newStreak = 1;
+      }
+    }
+
+    const milestonesArr = [...milestones];
+    const milestonesDef = { 3: 'Beginner Spark', 7: 'Momentum Builder', 14: 'Consistency Master', 30: 'Discipline Legend' };
+    for (const [days, name] of Object.entries(milestonesDef)) {
+      if (newStreak >= parseInt(days) && !milestonesArr.includes(name)) {
+        milestonesArr.push(name);
+      }
+    }
+
+    const updated = { current: newStreak, lastActive: today, freezeTokens: newFreeze, milestones: milestonesArr };
+    setStreak(updated);
+    try { localStorage.setItem('pybe_streak', JSON.stringify(updated)); } catch {}
+    return updated;
+  }
+
+  function getStreakAura(streakCount) {
+    if (streakCount >= 30) return 'legend';
+    if (streakCount >= 14) return 'master';
+    if (streakCount >= 7) return 'builder';
+    if (streakCount >= 3) return 'spark';
+    return 'neutral';
+  }
+
+  function getStreakMessage(streakCount, emotion) {
+    if (streakCount === 0) return "Let's start our journey together!";
+    if (streakCount === 1) return "Day 1! Great beginning!";
+    if (streakCount < 7) return `Keep going! ${streakCount} days and counting!`;
+    if (emotion === 'concerned') return "Don't break our streak tomorrow...";
+    if (emotion === 'excited') return `We're on fire for ${streakCount} days!`;
+    if (emotion === 'happy') return "We're building something strong here!";
+    return `Amazing ${streakCount}-day momentum!`;
+  }
+
+  const mentorPersonas = {
+    logic: {
+      name: 'Logic Mentor',
+      icon: '🧠',
+      style: 'structured',
+      generateFeedback: (result, scenario) => ({
+        summary: `Your ${scenario?.concepts?.[0] || 'reasoning'} approach is sound. Focus on clean structure.`,
+        tip: 'Consider edge cases first.',
+        score: Math.min((result?.promptScore || 0) + 10, 100)
+      })
+    },
+    slow: {
+      name: 'Slow Explainer',
+      icon: '🐢',
+      style: 'intuitive',
+      generateFeedback: (result, scenario) => ({
+        summary: `Let's break this down together. Your reasoning shows good instinct.`,
+        tip: 'Take time to verify each step.',
+        score: result?.promptScore || 50
+      })
+    },
+    challenge: {
+      name: 'Challenge Mentor',
+      icon: '⚡',
+      style: 'critical',
+      generateFeedback: (result, scenario) => ({
+        summary: `Your solution works, but can you break it? What if inputs are invalid?`,
+        tip: 'Test edge cases: empty, negative, maximum values.',
+        score: Math.max((result?.promptScore || 50) - 5, 20)
+      })
+    },
+    trickster: {
+      name: 'Trickster Mentor',
+      icon: '🎭',
+      style: 'alternative',
+      generateFeedback: (result, scenario) => ({
+        summary: `What if you're thinking about this wrong? Maybe recursion?`,
+        tip: 'Challenge your assumptions.',
+        score: Math.max((result?.promptScore || 50) - 10, 15)
+      })
+    }
+  };
+
+  function getMentorFeedback(mentorType, result, scenario) {
+    const mentor = mentorPersonas[mentorType] || mentorPersonas.logic;
+    if (!mentor.generateFeedback) return { summary: 'No feedback available.', tip: '', score: 50 };
+    try {
+      return mentor.generateFeedback(result, scenario);
+    } catch {
+      return { summary: 'Feedback unavailable.', tip: '', score: 50 };
+    }
   }
 
   async function refresh() {
@@ -181,6 +302,7 @@ function App() {
       });
       setActiveResult(result);
       setEmotion(deriveEmotion(result));
+      updateStreak();
       setForm({ ...form, reasoning: '', promptText: '', reflection: '' });
       await refresh();
     } catch (err) {
@@ -253,6 +375,9 @@ function App() {
             <span>{analytics?.scenarioCount || 0}<small>Scenarios</small></span>
             <span>{analytics?.sessionCount || 0}<small>Sessions</small></span>
             <span>{analytics?.averagePromptScore || 0}<small>Prompt score</small></span>
+            <span className={`streak-badge streak-${getStreakAura(streak.current)}`}>
+              🔥 {streak.current}<small>Day Streak</small>
+            </span>
           </div>
         </header>
 
@@ -314,8 +439,29 @@ function App() {
             <div className="section-title">
               <Sparkles size={20} />
               <h2>AI Mentor Output</h2>
-              <EmotionCompanion emotion={emotion} />
+              <EmotionCompanion emotion={emotion} streak={streak} />
             </div>
+            <div className="mentor-selector">
+              {Object.entries(mentorPersonas).map(([key, mentor]) => (
+                <button
+                  key={key}
+                  className={`mentor-btn ${activeMentor === key ? 'active' : ''}`}
+                  onClick={() => setActiveMentor(key)}
+                  type="button"
+                  title={mentor.name}
+                >
+                  <span className="mentor-icon">{mentor.icon}</span>
+                  <span className="mentor-name">{mentor.name.split(' ')[0]}</span>
+                </button>
+              ))}
+            </div>
+            {activeMentor && activeResult && (
+              <div className="mentor-feedback">
+                <span className="mentor-badge">{mentorPersonas[activeMentor]?.icon} {mentorPersonas[activeMentor]?.name}:</span>
+                <p>{getMentorFeedback(activeMentor, activeResult, selected).summary}</p>
+                <small>{getMentorFeedback(activeMentor, activeResult, selected).tip}</small>
+              </div>
+            )}
             {!activeResult ? <EmptyResult /> : (
               <Result result={activeResult} />
             )}
