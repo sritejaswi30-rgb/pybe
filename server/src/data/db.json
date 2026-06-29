@@ -1,7 +1,7 @@
 {
   "scenarios": [
     {
-      "_id": "8cf644f0-1402-4763-9542-02bd2ca0d1dc",
+      "_id": "5b0582e5-ca45-4116-8d74-adf4c775386f",
       "title": "Bag Weight Label",
       "difficulty": "Beginner",
       "concepts": [
@@ -16,11 +16,11 @@
       ],
       "sampleReasoning": "I only need to remember the bag weight, so I would store it with a clear name.",
       "effectivenessScore": 96,
-      "createdAt": "2026-06-19T11:54:44.732Z",
-      "updatedAt": "2026-06-19T11:54:44.732Z"
+      "createdAt": "2026-06-29T06:30:48.672Z",
+      "updatedAt": "2026-06-29T06:30:48.672Z"
     },
     {
-      "_id": "8f065c3d-36c5-48c5-948a-b7bc1a768bc9",
+      "_id": "e2ac9a06-8986-449f-bee8-372ef9110955",
       "title": "Rainy Day Choice",
       "difficulty": "Beginner",
       "concepts": [
@@ -35,11 +35,11 @@
       ],
       "sampleReasoning": "If it is raining, carry an umbrella. Otherwise, leave it at home.",
       "effectivenessScore": 95,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "c4dfb27a-c96b-4ff1-80ff-3bd5b5b12e74",
+      "_id": "c9b3c4ff-4af2-4921-9188-b984e502eb82",
       "title": "Two Snack Prices",
       "difficulty": "Beginner",
       "concepts": [
@@ -55,11 +55,11 @@
       ],
       "sampleReasoning": "I would keep the two prices separately and add them to get the total.",
       "effectivenessScore": 94,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "3657a91d-1f2b-42d7-bfec-4fbfb80dd648",
+      "_id": "817480f6-cbee-4833-aa50-b21cd349a955",
       "title": "Greeting by Name",
       "difficulty": "Beginner",
       "concepts": [
@@ -75,11 +75,11 @@
       ],
       "sampleReasoning": "The computer should store the learner name and place it inside a greeting sentence.",
       "effectivenessScore": 93,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "a29775e3-1744-4b5e-b213-ecbb9bf8ec39",
+      "_id": "fda555ce-4b32-4eaa-890a-0ae11e8a8177",
       "title": "Pass Mark Check",
       "difficulty": "Beginner",
       "concepts": [
@@ -95,11 +95,11 @@
       ],
       "sampleReasoning": "I would compare the score with the pass mark and decide pass if it is high enough.",
       "effectivenessScore": 92,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "734c083f-b08c-4524-ae1a-f2924cd6851a",
+      "_id": "3e930e99-efab-421c-8025-10e4d6b05cbe",
       "title": "Pocket Money Left",
       "difficulty": "Beginner",
       "concepts": [
@@ -115,11 +115,11 @@
       ],
       "sampleReasoning": "Start with the original money, subtract the spent amount, and store what remains.",
       "effectivenessScore": 91,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "1324fea6-96d2-408c-8f58-cd92877f9dbd",
+      "_id": "52aa32b5-5495-428d-b4a8-dff7026ca359",
       "title": "Favorite Color List",
       "difficulty": "Beginner",
       "concepts": [
@@ -134,11 +134,11 @@
       ],
       "sampleReasoning": "Since all values are colors, I would keep them together in one list.",
       "effectivenessScore": 90,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "8bb64eb9-5710-433b-bce9-95b4a5b995a1",
+      "_id": "bd1edc7b-038e-4f1a-a0e2-d1f6e67a611f",
       "title": "First Item in a Bag",
       "difficulty": "Beginner",
       "concepts": [
@@ -154,11 +154,11 @@
       ],
       "sampleReasoning": "The first item is based on its position in the ordered group.",
       "effectivenessScore": 89,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "73803faa-165f-4aee-b60f-3e08d470ce84",
+      "_id": "d6737197-0f39-4c06-b8c8-0c0e32f7d900",
       "title": "Attendance Count",
       "difficulty": "Beginner",
       "concepts": [
@@ -174,11 +174,11 @@
       ],
       "sampleReasoning": "I would count how many names are in the present-students list.",
       "effectivenessScore": 88,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "e510ab5f-1f11-46c9-b857-22a50e144e75",
+      "_id": "fe3a714d-58b0-4b69-9fa4-763116342a6e",
       "title": "Temperature Message",
       "difficulty": "Beginner",
       "concepts": [
@@ -194,11 +194,11 @@
       ],
       "sampleReasoning": "If the temperature is above the threshold, show Hot; otherwise show Comfortable.",
       "effectivenessScore": 87,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "2a3496ef-bb71-4dde-83f5-37844063678d",
+      "_id": "94f49f82-b55c-4408-8eed-a3ff519e75d1",
       "title": "Water Bottle Reminder",
       "difficulty": "Explorer",
       "concepts": [
@@ -213,11 +213,11 @@
       ],
       "sampleReasoning": "For every break, show the same water reminder.",
       "effectivenessScore": 96,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "71b887ca-fd3d-4c1a-83a9-f464f7c2a06d",
+      "_id": "d1574d14-4415-4a1f-b46a-4369137b19fa",
       "title": "Find the Longest Pencil",
       "difficulty": "Explorer",
       "concepts": [
@@ -233,11 +233,11 @@
       ],
       "sampleReasoning": "Start with one pencil as the longest, then compare each next pencil against it.",
       "effectivenessScore": 95,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "bf9c0f8c-308d-4e1f-9e37-9997c7e042b9",
+      "_id": "4b981c7f-8440-42cd-b9cc-e1aea06e3724",
       "title": "Clean Chore Checklist",
       "difficulty": "Explorer",
       "concepts": [
@@ -253,11 +253,11 @@
       ],
       "sampleReasoning": "Put chores in a list and handle each chore one by one.",
       "effectivenessScore": 94,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "ce225ef0-1111-4ed4-9318-7373018385e6",
+      "_id": "ee59005f-f288-4450-b65e-6f19e4ecf1d6",
       "title": "Movie Age Filter",
       "difficulty": "Explorer",
       "concepts": [
@@ -273,11 +273,11 @@
       ],
       "sampleReasoning": "For each movie, keep it only if the learner age is at least the minimum age.",
       "effectivenessScore": 93,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "cc62f477-44c8-403b-82cf-0b2638ff501b",
+      "_id": "1f22932c-11e5-4599-b281-3052b74e7df2",
       "title": "Classroom Supply Lookup",
       "difficulty": "Explorer",
       "concepts": [
@@ -292,11 +292,11 @@
       ],
       "sampleReasoning": "Each supply has a count, so I would store supply names as keys with counts as values.",
       "effectivenessScore": 92,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "26b0c080-124d-4ff8-92ad-4f2380e3e89f",
+      "_id": "f24b2477-2b9a-4d58-ac98-e9182f1d90dd",
       "title": "Bus Stop Search",
       "difficulty": "Explorer",
       "concepts": [
@@ -312,11 +312,11 @@
       ],
       "sampleReasoning": "Look at each stop and compare it with the stop I want.",
       "effectivenessScore": 91,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "169fc6d5-7b9b-483d-87ee-325e2d497c90",
+      "_id": "d6f282b5-6192-469d-8edf-c148d827955c",
       "title": "Average Practice Score",
       "difficulty": "Explorer",
       "concepts": [
@@ -332,11 +332,11 @@
       ],
       "sampleReasoning": "Find the total of all scores, count how many scores there are, then divide.",
       "effectivenessScore": 90,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "e0bdac7d-2033-408f-833c-3f2734690398",
+      "_id": "8219e8bc-97e2-4728-97e8-03011be1e2f5",
       "title": "Separate Even Roll Numbers",
       "difficulty": "Explorer",
       "concepts": [
@@ -352,11 +352,11 @@
       ],
       "sampleReasoning": "A roll number is even if dividing by two leaves no remainder.",
       "effectivenessScore": 89,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "decf41d5-8529-4685-b354-d02090bbb639",
+      "_id": "dda75572-1ea2-4034-8d49-5c93d4fc0c75",
       "title": "Capitalize Name Tags",
       "difficulty": "Explorer",
       "concepts": [
@@ -372,11 +372,11 @@
       ],
       "sampleReasoning": "For each name, convert it to title case before printing the tag.",
       "effectivenessScore": 88,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "418bec64-f75a-40fa-b849-42edba0d3939",
+      "_id": "753ef4d4-c224-4627-8cd4-15bb9f6373cd",
       "title": "Find Missing Homework",
       "difficulty": "Explorer",
       "concepts": [
@@ -392,11 +392,11 @@
       ],
       "sampleReasoning": "Take everyone in the class and remove the students who submitted.",
       "effectivenessScore": 87,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "07295b48-1037-4654-995f-df57d6fd7a7b",
+      "_id": "79c5d950-40c2-4518-86ae-dbdb88ac4adb",
       "title": "Reusable Discount Rule",
       "difficulty": "Builder",
       "concepts": [
@@ -412,11 +412,11 @@
       ],
       "sampleReasoning": "The helper needs the bill amount and should return the final price after applying the rule.",
       "effectivenessScore": 96,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "88a35898-eba5-47ca-adf2-0805d633ea3d",
+      "_id": "39d95080-7ef2-4525-a696-72ee3a9051a9",
       "title": "Mini Quiz Checker",
       "difficulty": "Builder",
       "concepts": [
@@ -432,11 +432,11 @@
       ],
       "sampleReasoning": "Compare the learner answer with the correct answer and return whether they match.",
       "effectivenessScore": 95,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "9a8e5318-6fad-44ed-8e60-03da14d3f4db",
+      "_id": "ea1692ff-b261-47f5-a4e7-301764ca0958",
       "title": "Step Counter Function",
       "difficulty": "Builder",
       "concepts": [
@@ -452,11 +452,11 @@
       ],
       "sampleReasoning": "The function should take step counts, add them, and give back the total.",
       "effectivenessScore": 94,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "34c237f5-a9c8-478c-8980-8505ba0d2b94",
+      "_id": "87f66399-f607-4475-8d18-6505ecc5870d",
       "title": "Safe Username Maker",
       "difficulty": "Builder",
       "concepts": [
@@ -472,11 +472,11 @@
       ],
       "sampleReasoning": "Make the name lowercase and remove spaces so it can be used as a username.",
       "effectivenessScore": 93,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "9bcdd1e0-2f8a-416e-a0e2-60e188e33dcd",
+      "_id": "de52f3f6-fc7d-4bd8-a4af-c56e28254343",
       "title": "Retry Until Valid",
       "difficulty": "Builder",
       "concepts": [
@@ -492,11 +492,11 @@
       ],
       "sampleReasoning": "Keep asking while the number is not positive, then stop once it is valid.",
       "effectivenessScore": 92,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "54de8788-6a15-4377-a15f-e4cb73632c42",
+      "_id": "07972c90-17d3-47fd-bdce-6488fbc29380",
       "title": "Simple Score Report",
       "difficulty": "Builder",
       "concepts": [
@@ -512,11 +512,11 @@
       ],
       "sampleReasoning": "Return a dictionary with the learner name and score as labeled values.",
       "effectivenessScore": 91,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "d98ea7cd-5792-41b6-9a66-03267e936bc1",
+      "_id": "392def05-31ae-4595-8a02-3635b9c8f236",
       "title": "Task Status Updater",
       "difficulty": "Builder",
       "concepts": [
@@ -532,11 +532,11 @@
       ],
       "sampleReasoning": "Find the task by name and change its status from pending to done.",
       "effectivenessScore": 90,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "e5b52a26-a324-40eb-84f7-fb757eecdceb",
+      "_id": "667be711-be3f-47a7-8a5e-1daa76b633af",
       "title": "Small Receipt Builder",
       "difficulty": "Builder",
       "concepts": [
@@ -552,11 +552,11 @@
       ],
       "sampleReasoning": "Combine the item name and price into one clear sentence.",
       "effectivenessScore": 89,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "f57b40d9-7510-43dc-ae04-230a9d8331b3",
+      "_id": "5a97b0c4-142d-456f-8427-32fdcfd5fd50",
       "title": "Choose Next Scenario",
       "difficulty": "Builder",
       "concepts": [
@@ -572,11 +572,11 @@
       ],
       "sampleReasoning": "If the score is high choose harder, if low choose easier, otherwise stay similar.",
       "effectivenessScore": 88,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     },
     {
-      "_id": "5cf0ecd0-c690-45d4-a9b4-12e36403b125",
+      "_id": "97ccfb8e-fabc-4e4e-9c2e-5b67e74742b6",
       "title": "Reflection Keyword Finder",
       "difficulty": "Builder",
       "concepts": [
@@ -592,9 +592,411 @@
       ],
       "sampleReasoning": "Look for words like confused or stuck and flag the reflection if they appear.",
       "effectivenessScore": 87,
-      "createdAt": "2026-06-19T11:54:44.733Z",
-      "updatedAt": "2026-06-19T11:54:44.733Z"
+      "createdAt": "2026-06-29T06:30:48.674Z",
+      "updatedAt": "2026-06-29T06:30:48.674Z"
     }
   ],
-  "sessions": []
+  "sessions": [],
+  "concepts": {
+    "variables": {
+      "id": "variables",
+      "title": "Variables",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "A variable is a named container that stores a value you can use later. Think of it as a labeled box where you put information to retrieve whenever needed.",
+        "why": "Programs need to remember values—user input, calculations, game scores. Without variables, every piece of data would be lost after use.",
+        "where": ["Banking systems storing account balances", "Shopping carts holding items", "Games tracking player scores", "Student portals storing grades", "Mobile apps remembering user preferences"],
+        "how": "Assign a value using the = sign. The name goes on the left, the value on the right. You can then use the name to retrieve or change that value later.",
+        "example": "age = 12\nname = 'Alex'\nprint(name)  # Output: Alex"
+      },
+      "relatedConcepts": ["input", "output", "arithmetic", "strings"],
+      "commonMistake": "Using a variable name that hasn't been assigned yet, or trying to use a variable before giving it a value.",
+      "keyTakeaway": "Variables let programs store, name, and reuse information.",
+      "tags": ["basics", "memory", "storage"]
+    },
+    "conditionals": {
+      "id": "conditionals",
+      "title": "Conditionals",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "Conditionals are decisions in code. They let programs choose different actions based on whether something is true or false.",
+        "why": "Real life is full of choices. Conditionals let your program respond differently depending on the situation—should I bring an umbrella? Should I show a pass or fail message?",
+        "where": ["Login systems checking passwords", "Weather apps deciding alerts", "Grade calculators showing pass/fail", "Games responding to player actions", " ATMs verifying PINs"],
+        "how": "Use if, elif (else if), and else to create branching paths. The program checks a condition and follows the matching path.",
+        "example": "if temperature > 30:\n    print('Hot day!')\nelse:\n    print('Nice weather')"
+      },
+      "relatedConcepts": ["comparisons", "variables", "loops"],
+      "commonMistake": "Using = (assignment) instead of == (comparison) in conditions.",
+      "keyTakeaway": "Conditionals let programs make decisions and take different paths based on values.",
+      "tags": ["logic", "decisions", "flow"]
+    },
+    "loops": {
+      "id": "loops",
+      "title": "Loops",
+      "difficulty": "Explorer",
+      "w3h": {
+        "what": "Loops repeat actions without having to write the same code multiple times. They let programs automate repetitive tasks efficiently.",
+        "why": "Imagine sending reminder emails to 1000 users—writing that code 1000 times would be impossible. Loops solve this by repeating actions automatically.",
+        "where": ["Processing customer orders in a day", "Scanning items in a shopping cart", "Sending bulk emails", "Animating game frames", "Reading lines in a file"],
+        "how": "Use 'for' when you know how many times to repeat. Use 'while' when you want to repeat until a condition becomes false.",
+        "example": "for i in range(5):\n    print('Reminder', i)"
+      },
+      "relatedConcepts": ["lists", "conditionals", "variables"],
+      "commonMistake": "Creating an infinite loop by forgetting to update the condition variable.",
+      "keyTakeaway": "Loops automate repetition, saving time and reducing code duplication.",
+      "tags": ["automation", "repetition", "flow"]
+    },
+    "lists": {
+      "id": "lists",
+      "title": "Lists",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "A list is an ordered collection of items stored together. Each item has a position (index) that lets you access it.",
+        "why": "Sometimes you need to store multiple related values—names of students, prices of items, tasks to complete. Lists keep them organized together.",
+        "where": ["Playlist of songs", "Contacts on your phone", "Shopping cart items", "Leaderboards in games", "Attendance registers"],
+        "how": "Create a list using square brackets. Access items by their index starting from 0. Use loops to process each item.",
+        "example": "colors = ['red', 'green', 'blue']\nprint(colors[0])  # Output: red"
+      },
+      "relatedConcepts": ["indexing", "loops", "variables"],
+      "commonMistake": "Forgetting that list indices start from 0, not 1.",
+      "keyTakeaway": "Lists store multiple related values in order, accessible by position.",
+      "tags": ["collections", "order", "storage"]
+    },
+    "functions": {
+      "id": "functions",
+      "title": "Functions",
+      "difficulty": "Builder",
+      "w3h": {
+        "what": "A function is a reusable block of code that performs a specific task. You can call it by name whenever you need that task done.",
+        "why": "Instead of writing the same code repeatedly, functions let you define it once and reuse it. They also organize code into logical blocks.",
+        "where": ["Calculating discounts in e-commerce", "Validating user input forms", "Sending confirmation emails", "Generating reports", "Encrypting passwords"],
+        "how": "Define with 'def', give it a name, add parameters for input. Call the function by name and pass arguments if needed.",
+        "example": "def greet(name):\n    return 'Hello, ' + name\n\nprint(greet('Alex'))"
+      },
+      "relatedConcepts": ["variables", "conditionals", "strings"],
+      "commonMistake": "Forgetting to return a value when the function should produce output.",
+      "keyTakeaway": "Functions encapsulate reusable logic, making code organized and maintainable.",
+      "tags": ["reusability", "organization", "abstraction"]
+    },
+    "strings": {
+      "id": "strings",
+      "title": "Strings",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "A string is text—letters, words, or sentences enclosed in quotes. It's how programs handle written information.",
+        "why": "Programs communicate with users through text. Strings let you display messages, process user input, and manipulate textual data.",
+        "where": ["Chat applications", "Email content", "Username and passwords", "Document editing", "Search features"],
+        "how": "Create strings with single or double quotes. Combine with +. Extract parts using indices. Use methods like .upper() or .lower().",
+        "example": "name = 'Alex'\ngreeting = 'Hello, ' + name\nprint(greeting.upper())"
+      },
+      "relatedConcepts": ["variables", "indexing", "lists"],
+      "commonMistake": "Confusing strings with numbers. '5' + '3' gives '53', not 8.",
+      "keyTakeaway": "Strings handle text data and can be combined, compared, and transformed.",
+      "tags": ["text", "data", "manipulation"]
+    },
+    "arithmetic": {
+      "id": "arithmetic",
+      "title": "Arithmetic",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "Arithmetic operations let programs perform mathematical calculations—addition, subtraction, multiplication, division, and more.",
+        "why": "From calculating shopping totals to measuring distances, programs often need to compute numerical results.",
+        "where": ["Calculating shopping totals", "Converting currencies", "Computing grades", "Measuring distances", "Financial interest calculations"],
+        "how": "Use +, -, *, / for basic operations. Use // for integer division, % for remainder, ** for exponents.",
+        "example": "price = 50\ntax = price * 0.18\ntotal = price + tax"
+      },
+      "relatedConcepts": ["variables", "comparisons", "subtraction"],
+      "commonMistake": "Using / for division which gives decimals, when you need whole numbers.",
+      "keyTakeaway": "Arithmetic lets programs perform calculations on numbers.",
+      "tags": ["math", "calculations", "numbers"]
+    },
+    "subtraction": {
+      "id": "subtraction",
+      "title": "Subtraction",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "Subtraction finds the difference between two numbers by taking one away from another.",
+        "why": "Used when you need to find what remains after removing something—calculating change, remaining balance, or distance traveled.",
+        "where": ["Calculating change at a store", "Tracking remaining budget", "Finding distance traveled", "Counting absent students", "Measuring weight loss"],
+        "how": "Use the - operator. Order matters: a - b is not the same as b - a.",
+        "example": "money = 100\nspent = 35\nremaining = money - spent  # 65"
+      },
+      "relatedConcepts": ["arithmetic", "variables", "comparisons"],
+      "commonMistake": "Forgetting that subtraction is not commutative—operand order matters.",
+      "keyTakeaway": "Subtraction finds the difference between two values.",
+      "tags": ["math", "difference", "numbers"]
+    },
+    "comparisons": {
+      "id": "comparisons",
+      "title": "Comparisons",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "Comparisons check relationships between values—they ask questions like 'is this bigger?' or 'are these equal?' and return true or false.",
+        "why": "Programs constantly need to make decisions. Comparisons provide the answers that drive conditional logic.",
+        "where": ["Checking if a score passed", "Validating age requirements", "Sorting data", "Verifying passwords match", "Finding maximum values"],
+        "how": "Use == for equals, != for not equals, > < >= <= for size comparisons. Results are True or False.",
+        "example": "age = 18\nis_adult = age >= 18\nprint(is_adult)  # True"
+      },
+      "relatedConcepts": ["conditionals", "variables", "subtraction"],
+      "commonMistake": "Using = instead of == in conditions—the first assigns, the second compares.",
+      "keyTakeaway": "Comparisons produce True/False values used in decision-making.",
+      "tags": ["logic", "decisions", "boolean"]
+    },
+    "comparison": {
+      "id": "comparison",
+      "title": "Comparison",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "Comparison is the act of examining two things to find similarities or differences. In programming, it means checking relationships between values.",
+        "why": "To make decisions, programs must compare values—is this item in the list? Is the password correct? Is there enough inventory?",
+        "where": ["Finding maximum or minimum values", "Sorting algorithms", "Binary search", "Validating ranges", "Checking duplicates"],
+        "how": "Compare using operators (==, !=, <, >, <=, >=) or methods like sorted() that internally compare elements.",
+        "example": "a, b = 5, 10\nif a < b:\n    print('a is smaller')"
+      },
+      "relatedConcepts": ["comparisons", "conditionals", "filtering"],
+      "commonMistake": "Assuming transitivity without testing: if a < b and b < c, then a < c.",
+      "keyTakeaway": "Comparison enables programs to evaluate relationships and make data-driven decisions.",
+      "tags": ["logic", "relationships", "evaluation"]
+    },
+    "counting": {
+      "id": "counting",
+      "title": "Counting",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "Counting determines how many items are in a collection. It answers 'how many?' questions.",
+        "why": "From counting inventory to tallying votes, programs often need to know quantities to make decisions.",
+        "where": ["Attendance tracking", "Inventory management", "Vote counting", "Page number display", "Cart item totals"],
+        "how": "Use len() to get the number of items in a list, string, or collection. Use loops with a counter variable.",
+        "example": "students = ['Ana', 'Ben', 'Cal']\nprint(len(students))  # 3"
+      },
+      "relatedConcepts": ["lists", "loops", "variables"],
+      "commonMistake": "Counting from 1 in your head while the program counts from 0.",
+      "keyTakeaway": "Counting quantifies collections, helping programs know 'how many'.",
+      "tags": ["quantities", "measurement", "totals"]
+    },
+    "indexing": {
+      "id": "indexing",
+      "title": "Indexing",
+      "difficulty": "Beginner",
+      "w3h": {
+        "what": "Indexing accesses a specific item in an ordered collection using its position number, starting from 0.",
+        "why": "Once items are stored together, you need a way to retrieve specific ones—first item, fifth item, last item.",
+        "where": ["Selecting a contact from a list", "Choosing a character from a word", "Accessing pixel data in images", "Getting array elements in algorithms", "Parsing CSV data by column"],
+        "how": "Use square brackets with the position number. First item is index 0, second is 1, etc. Use negative indices for counting from the end.",
+        "example": "fruits = ['apple', 'banana', 'cherry']\nprint(fruits[0])   # apple\nprint(fruits[-1])  # cherry"
+      },
+      "relatedConcepts": ["lists", "strings", "loops"],
+      "commonMistake": "Assuming indexing starts at 1 instead of 0, causing off-by-one errors.",
+      "keyTakeaway": "Indexing locates items by their position in ordered collections.",
+      "tags": ["access", "position", "retrieval"]
+    },
+    "dictionaries": {
+      "id": "dictionaries",
+      "title": "Dictionaries",
+      "difficulty": "Explorer",
+      "w3h": {
+        "what": "A dictionary stores data as key-value pairs. Each key uniquely identifies its value, like a real dictionary where words define meanings.",
+        "why": "When you need to look up information by name rather than position, dictionaries are perfect. They're faster than lists for searching.",
+        "where": ["Phonebook contacts", "Language translations", "Product catalogs", "Configuration settings", "Student grade records"],
+        "how": "Create with curly braces. Define keys and values separated by colon. Access values using keys in square brackets.",
+        "example": "student = {'name': 'Ana', 'grade': 'A'}\nprint(student['name'])  # Ana"
+      },
+      "relatedConcepts": ["variables", "lists", "search"],
+      "commonMistake": "Trying to access a key that doesn't exist without using .get() for safe lookup.",
+      "keyTakeaway": "Dictionaries store data as key-value pairs for fast lookup by name.",
+      "tags": ["key-value", "lookup", "storage"]
+    },
+    "filtering": {
+      "id": "filtering",
+      "title": "Filtering",
+      "difficulty": "Explorer",
+      "w3h": {
+        "what": "Filtering selects only the items that meet certain conditions, keeping what you need and discarding the rest.",
+        "why": "From hundreds of emails, you want only unread ones. From many products, only those in your budget. Filtering solves information overload.",
+        "where": ["Search result refinement", "Spam detection", "Age-appropriate content", "Price range filters", "Quality control checks"],
+        "how": "Use conditionals inside loops or list comprehensions. Check each item and keep only those where the condition is true.",
+        "example": "scores = [45, 72, 90, 55, 88]\npassing = [s for s in scores if s >= 60]\n# [72, 90, 88]"
+      },
+      "relatedConcepts": ["loops", "conditionals", "lists"],
+      "commonMistake": "Modifying a list while iterating over it, causing unexpected behavior.",
+      "keyTakeaway": "Filtering extracts subset of data meeting specific criteria.",
+      "tags": ["selection", "criteria", "subset"]
+    },
+    "search": {
+      "id": "search",
+      "title": "Search",
+      "difficulty": "Explorer",
+      "w3h": {
+        "what": "Search looks for a specific item or pattern within data, checking each element until a match is found.",
+        "why": "Finding whether something exists—whether a username is taken, a word is in a document, or a route exists in a map.",
+        "where": ["Login username verification", "Dictionary apps", "Spell checking", "Finding routes in maps", "Database queries"],
+        "how": "Loop through items checking each one. Use 'in' operator for simple checks. Stop when found for efficiency.",
+        "example": "books = ['Math', 'Science', 'History']\nif 'Math' in books:\n    print('Found!')"
+      },
+      "relatedConcepts": ["loops", "conditionals", "indexing"],
+      "commonMistake": "Not handling the case when the item isn't found.",
+      "keyTakeaway": "Search locates items by checking elements until a match is found.",
+      "tags": ["finding", "lookup", "retrieval"]
+    },
+    "sets": {
+      "id": "sets",
+      "title": "Sets",
+      "difficulty": "Explorer",
+      "w3h": {
+        "what": "A set is a collection of unique items with no duplicates. It automatically removes repeated values.",
+        "why": "When you need to track what's in a collection without repeats—like unique visitors, available colors, or allowed permissions.",
+        "where": ["Unique visitor counts", "Removing duplicate entries", "Membership permissions", "Available inventory colors", "Word uniqueness in documents"],
+        "how": "Create with curly braces or set() function. Add items with .add(). Check membership with 'in'. Sets don't preserve order.",
+        "example": "colors = {'red', 'green', 'blue', 'red'}\nprint(colors)  # {'red', 'green', 'blue'}"
+      },
+      "relatedConcepts": ["lists", "filtering", "dictionaries"],
+      "commonMistake": "Assuming sets maintain insertion order—they don't.",
+      "keyTakeaway": "Sets store unique items, automatically removing duplicates.",
+      "tags": ["uniqueness", "collection", "no-duplicates"]
+    },
+    "modulo": {
+      "id": "modulo",
+      "title": "Modulo",
+      "difficulty": "Explorer",
+      "w3h": {
+        "what": "The modulo operator (%) returns the remainder after division. It answers 'what's left over?' when dividing.",
+        "why": "Useful for checking divisibility (is this even?), cycling through patterns, or wrapping values within a range.",
+        "where": ["Checking even/odd numbers", "Alternating colors in grids", "Pagination calculations", "Clock arithmetic", "Determining leap years"],
+        "how": "Use the % operator. 10 % 3 = 1 because 10 divided by 3 is 3 with remainder 1.",
+        "example": "for i in range(10):\n    if i % 2 == 0:\n        print(i, 'is even')"
+      },
+      "relatedConcepts": ["arithmetic", "comparisons", "loops"],
+      "commonMistake": "Confusing modulo with division—% gives remainder, / gives quotient.",
+      "keyTakeaway": "Modulo finds remainders, useful for patterns and divisibility checks.",
+      "tags": ["remainder", "division", "patterns"]
+    },
+    "averages": {
+      "id": "averages",
+      "title": "Averages",
+      "difficulty": "Explorer",
+      "w3h": {
+        "what": "An average summarizes a set of numbers with one representative value—the sum divided by the count.",
+        "why": "A single average makes large datasets understandable. What's the average score? Average temperature? Average spending?",
+        "where": ["Grade point calculations", "Performance metrics", "Weather summaries", "Financial reports", "User ratings"],
+        "how": "Sum all values with sum(), count with len(), divide to get average. Formula: (sum of items) / (number of items).",
+        "example": "scores = [85, 90, 78, 92]\naverage = sum(scores) / len(scores)\nprint(average)  # 86.25"
+      },
+      "relatedConcepts": ["arithmetic", "counting", "loops"],
+      "commonMistake": "Forgetting to convert to float when dividing—may lose decimal precision.",
+      "keyTakeaway": "Averages summarize collections with a single representative value.",
+      "tags": ["statistics", "summary", "central-tendency"]
+    },
+    "validation": {
+      "id": "validation",
+      "title": "Validation",
+      "difficulty": "Builder",
+      "w3h": {
+        "what": "Validation checks whether data meets requirements before accepting it—confirming it's in the right format, range, or type.",
+        "why": "Bad input causes crashes and security issues. Validation catches problems early with clear error messages.",
+        "where": ["Form input verification", "Password strength checks", "File upload validation", "API request validation", "User registration"],
+        "how": "Check each requirement with conditionals. Return True if valid, False otherwise. Provide clear error messages.",
+        "example": "def validate_age(age):\n    if age < 0 or age > 150:\n        return False\n    return True"
+      },
+      "relatedConcepts": ["conditionals", "strings", "while loops"],
+      "commonMistake": "Validating only at the end rather than checking incrementally.",
+      "keyTakeaway": "Validation ensures data meets requirements before processing.",
+      "tags": ["quality", "input-checking", "safety"]
+    },
+    "mutation": {
+      "id": "mutation",
+      "title": "Mutation",
+      "difficulty": "Builder",
+      "w3h": {
+        "what": "Mutation changes an existing value in place rather than creating a new one. The variable stays the same but its contents change.",
+        "why": "Sometimes you need to update data without creating copies—like changing a task status, updating a score, or modifying a counter.",
+        "where": ["Task completion marking", "Score updates in games", "Status tracking", "Cache invalidation", "Edit history"],
+        "how": "Assign a new value to an existing variable or list element. Use += for incrementing. Modify dictionaries with assignment.",
+        "example": "tasks = ['buy milk', 'read book']\ntasks[0] = 'buy eggs'\n# ['buy eggs', 'read book']"
+      },
+      "relatedConcepts": ["variables", "lists", "dictionaries"],
+      "commonMistake": "Mutating shared data unexpectedly affecting other parts of the program.",
+      "keyTakeaway": "Mutation updates existing data in place, changing values without creating new variables.",
+      "tags": ["change", "update", "in-place"]
+    },
+    "formatting": {
+      "id": "formatting",
+      "title": "Formatting",
+      "difficulty": "Builder",
+      "w3h": {
+        "what": "Formatting arranges text and numbers into a readable presentation—controlling decimals, alignment, and text layout.",
+        "why": "Raw numbers aren't readable. $1234.567890 needs to become '$1,234.57' for receipts, invoices, and reports.",
+        "where": ["Receipt generation", "Report headers", "Invoice creation", "Table alignment", "Currency display"],
+        "how": "Use f-strings with : for formatting. Control decimal places with .2f, add commas with :, align with < ^ >.",
+        "example": "price = 1234.5678\nprint(f'${price:,.2f}')\n# $1,234.57"
+      },
+      "relatedConcepts": ["strings", "arithmetic", "functions"],
+      "commonMistake": "Using formatting only at display time instead of storing formatted values separately.",
+      "keyTakeaway": "Formatting arranges data for clear, attractive presentation.",
+      "tags": ["presentation", "layout", "display"]
+    },
+    "while loops": {
+      "id": "while loops",
+      "title": "While Loops",
+      "difficulty": "Builder",
+      "w3h": {
+        "what": "A while loop repeats as long as a condition remains true. Unlike for loops, it continues until something changes the condition.",
+        "why": "When you don't know in advance how many repetitions are needed—like waiting for valid user input or processing until data runs out.",
+        "where": ["Input retry until valid", "Game loops waiting for quit", "Data processing streams", "Countdown timers", "Event listeners"],
+        "how": "Start with 'while condition:'. Inside the loop, ensure the condition eventually becomes False, or you'll loop forever.",
+        "example": "password = ''\nwhile password != 'secret':\n    password = input('Enter password: ')"
+      },
+      "relatedConcepts": ["loops", "conditionals", "validation"],
+      "commonMistake": "Forgetting to update the condition inside the loop, creating an infinite loop.",
+      "keyTakeaway": "While loops repeat until a condition becomes false, useful when repetition count is unknown.",
+      "tags": ["repetition", "conditional-loop", "flow"]
+    },
+    "adaptive logic": {
+      "id": "adaptive logic",
+      "title": "Adaptive Logic",
+      "difficulty": "Builder",
+      "w3h": {
+        "what": "Adaptive logic adjusts behavior based on context or history—making programs respond intelligently to changing conditions.",
+        "why": "Static programs can't handle variation. Adaptive systems adjust difficulty, personalize experiences, or optimize based on performance.",
+        "where": ["Adaptive learning platforms", "Difficulty scaling in games", "Recommendation systems", "Smart notifications", "Auto-adjusting interfaces"],
+        "how": "Track history or context. Use conditions to select different paths. Update tracking variables as conditions change.",
+        "example": "if score >= 90:\n    difficulty = 'hard'\nelif score >= 60:\n    difficulty = 'medium'\nelse:\n    difficulty = 'easy'"
+      },
+      "relatedConcepts": ["conditionals", "comparisons", "functions"],
+      "commonMistake": "Adding too many adaptation rules, making the logic complex and hard to maintain.",
+      "keyTakeaway": "Adaptive logic adjusts program behavior based on context and history.",
+      "tags": ["intelligence", "personalization", "context-awareness"]
+    }
+  },
+  "motivations": [
+    { "id": 1, "icon": "💡", "text": "Think first. Code second." },
+    { "id": 2, "icon": "🌱", "text": "Every expert started as a beginner." },
+    { "id": 3, "icon": "🧠", "text": "Great programmers solve problems before writing code." },
+    { "id": 4, "icon": "🚀", "text": "Small progress every day becomes mastery." },
+    { "id": 5, "icon": "🔍", "text": "Curiosity is your greatest debugging tool." },
+    { "id": 6, "icon": "🧩", "text": "Every problem has a pattern—find it." },
+    { "id": 7, "icon": "💪", "text": "Mistakes are proof you're learning." },
+    { "id": 8, "icon": "🎯", "text": "Focus on understanding, not memorizing." },
+    { "id": 9, "icon": "🌍", "text": "Code solves real-world problems." },
+    { "id": 10, "icon": "✨", "text": "Today's challenge is tomorrow's confidence." },
+    { "id": 11, "icon": "🌟", "text": "Your reasoning is your superpower." },
+    { "id": 12, "icon": "🦋", "text": "Every bug you fix makes you stronger." },
+    { "id": 13, "icon": "⏰", "text": "Take your time—speed comes with practice." },
+    { "id": 14, "icon": "🎓", "text": "Learn one concept at a time." },
+    { "id": 15, "icon": "💻", "text": "Computers do exactly what you tell them—not what you mean." },
+    { "id": 16, "icon": "🔢", "text": "Break big problems into small steps." },
+    { "id": 17, "icon": "🧪", "text": "Try, fail, learn, repeat." },
+    { "id": 18, "icon": "🏗️", "text": "First design, then build." },
+    { "id": 19, "icon": "📝", "text": "Write down your thinking before coding." },
+    { "id": 20, "icon": "🤔", "text": "Ask yourself: what does the computer need to know?" },
+    { "id": 21, "icon": "🔄", "text": "Loops are for when actions repeat." },
+    { "id": 22, "icon": "⚖️", "text": "Conditionals help computers make decisions." },
+    { "id": 23, "icon": "📦", "text": "Store related things together." },
+    { "id": 24, "icon": "🔤", "text": "Text has patterns—learn to spot them." },
+    { "id": 25, "icon": "🧮", "text": "Numbers can be transformed and compared." },
+    { "id": 26, "icon": "🎪", "text": "Functions are reusable problem solvers." },
+    { "id": 27, "icon": "🔗", "text": "Connect ideas before connecting code." },
+    { "id": 28, "icon": "🌈", "text": "Many paths lead to the same solution." },
+    { "id": 29, "icon": "📊", "text": "Data tells stories—listen to it." },
+    { "id": 30, "icon": "🛠️", "text": "Tools amplify your thinking." }
+  ]
 }
