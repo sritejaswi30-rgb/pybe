@@ -68,7 +68,6 @@ function App() {
   const [submitting, setSubmitting] = useState(false);
   const [emotion, setEmotion] = useState(null);
   const [isListening, setIsListening] = useState(false);
-  const [activeMentor, setActiveMentor] = useState('logic');
 
   const [streak, setStreak] = useState(() => {
     try {
@@ -183,59 +182,6 @@ function App() {
     if (emotion === 'excited') return `We're on fire for ${streakCount} days!`;
     if (emotion === 'happy') return "We're building something strong here!";
     return `Amazing ${streakCount}-day momentum!`;
-  }
-
-  const mentorPersonas = {
-    logic: {
-      name: 'Logic Mentor',
-      icon: '🧠',
-      style: 'structured',
-      generateFeedback: (result, scenario) => ({
-        summary: `Your ${scenario?.concepts?.[0] || 'reasoning'} approach is sound. Focus on clean structure.`,
-        tip: 'Consider edge cases first.',
-        score: Math.min((result?.promptScore || 0) + 10, 100)
-      })
-    },
-    slow: {
-      name: 'Slow Explainer',
-      icon: '🐢',
-      style: 'intuitive',
-      generateFeedback: (result, scenario) => ({
-        summary: `Let's break this down together. Your reasoning shows good instinct.`,
-        tip: 'Take time to verify each step.',
-        score: result?.promptScore || 50
-      })
-    },
-    challenge: {
-      name: 'Challenge Mentor',
-      icon: '⚡',
-      style: 'critical',
-      generateFeedback: (result, scenario) => ({
-        summary: `Your solution works, but can you break it? What if inputs are invalid?`,
-        tip: 'Test edge cases: empty, negative, maximum values.',
-        score: Math.max((result?.promptScore || 50) - 5, 20)
-      })
-    },
-    trickster: {
-      name: 'Trickster Mentor',
-      icon: '🎭',
-      style: 'alternative',
-      generateFeedback: (result, scenario) => ({
-        summary: `What if you're thinking about this wrong? Maybe recursion?`,
-        tip: 'Challenge your assumptions.',
-        score: Math.max((result?.promptScore || 50) - 10, 15)
-      })
-    }
-  };
-
-  function getMentorFeedback(mentorType, result, scenario) {
-    const mentor = mentorPersonas[mentorType] || mentorPersonas.logic;
-    if (!mentor.generateFeedback) return { summary: 'No feedback available.', tip: '', score: 50 };
-    try {
-      return mentor.generateFeedback(result, scenario);
-    } catch {
-      return { summary: 'Feedback unavailable.', tip: '', score: 50 };
-    }
   }
 
   async function refresh() {
@@ -441,27 +387,6 @@ function App() {
               <h2>AI Mentor Output</h2>
               <EmotionCompanion emotion={emotion} streak={streak} />
             </div>
-            <div className="mentor-selector">
-              {Object.entries(mentorPersonas).map(([key, mentor]) => (
-                <button
-                  key={key}
-                  className={`mentor-btn ${activeMentor === key ? 'active' : ''}`}
-                  onClick={() => setActiveMentor(key)}
-                  type="button"
-                  title={mentor.name}
-                >
-                  <span className="mentor-icon">{mentor.icon}</span>
-                  <span className="mentor-name">{mentor.name.split(' ')[0]}</span>
-                </button>
-              ))}
-            </div>
-            {activeMentor && activeResult && (
-              <div className="mentor-feedback">
-                <span className="mentor-badge">{mentorPersonas[activeMentor]?.icon} {mentorPersonas[activeMentor]?.name}:</span>
-                <p>{getMentorFeedback(activeMentor, activeResult, selected).summary}</p>
-                <small>{getMentorFeedback(activeMentor, activeResult, selected).tip}</small>
-              </div>
-            )}
             {!activeResult ? <EmptyResult /> : (
               <Result result={activeResult} />
             )}
