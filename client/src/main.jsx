@@ -79,35 +79,36 @@ function App() {
   const concepts = useMemo(() => [...new Set(scenarios.flatMap((scenario) => scenario.concepts || []))].sort(), [scenarios]);
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const [voiceField, setVoiceField] = useState(null);
 
-  function toggleVoiceInput() {
+  function toggleVoiceInput(field) {
     if (!SpeechRecognition) return;
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.lang = 'en-US';
 
-    if (isListening) {
+    if (voiceField === field) {
       recognition.stop();
-      setIsListening(false);
+      setVoiceField(null);
       return;
     }
 
-    setIsListening(true);
+    setVoiceField(field);
     recognition.start();
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      setForm((prev) => ({ ...prev, reasoning: prev.reasoning + transcript }));
-      setIsListening(false);
+      setForm((prev) => ({ ...prev, [field]: prev[field] + transcript }));
+      setVoiceField(null);
     };
 
     recognition.onerror = () => {
-      setIsListening(false);
+      setVoiceField(null);
     };
 
     recognition.onend = () => {
-      setIsListening(false);
+      setVoiceField(null);
     };
   }
 
@@ -340,7 +341,7 @@ function App() {
             <form onSubmit={submitSession} className="learning-form">
               <label className="reasoning-label">
                 Your reasoning
-                <div className="reasoning-input-row">
+                <div className="input-row">
                   <textarea
                     required
                     value={form.reasoning}
@@ -349,9 +350,9 @@ function App() {
                   />
                   <button
                     type="button"
-                    className={`voice-btn ${isListening ? 'listening' : ''}`}
-                    onClick={toggleVoiceInput}
-                    aria-label={isListening ? 'Stop recording' : 'Start voice input'}
+                    className={`voice-btn ${voiceField === 'reasoning' ? 'listening' : ''}`}
+                    onClick={() => toggleVoiceInput('reasoning')}
+                    aria-label={voiceField === 'reasoning' ? 'Stop recording' : 'Start voice input'}
                     title={SpeechRecognition ? 'Voice input' : 'Voice not supported'}
                     disabled={!SpeechRecognition}
                   >
@@ -361,19 +362,43 @@ function App() {
               </label>
               <label>
                 Prompt you would give an AI mentor
-                <textarea
-                  value={form.promptText}
-                  onChange={(event) => setForm({ ...form, promptText: event.target.value })}
-                  placeholder="Explain my approach step by step, then show the Python concept and code..."
-                />
+                <div className="input-row">
+                  <textarea
+                    value={form.promptText}
+                    onChange={(event) => setForm({ ...form, promptText: event.target.value })}
+                    placeholder="Explain my approach step by step, then show the Python concept and code..."
+                  />
+                  <button
+                    type="button"
+                    className={`voice-btn ${voiceField === 'promptText' ? 'listening' : ''}`}
+                    onClick={() => toggleVoiceInput('promptText')}
+                    aria-label={voiceField === 'promptText' ? 'Stop recording' : 'Start voice input'}
+                    title={SpeechRecognition ? 'Voice input' : 'Voice not supported'}
+                    disabled={!SpeechRecognition}
+                  >
+                    <Mic size={18} />
+                  </button>
+                </div>
               </label>
               <label>
                 Reflection
-                <textarea
-                  value={form.reflection}
-                  onChange={(event) => setForm({ ...form, reflection: event.target.value })}
-                  placeholder="What did you notice about your thinking?"
-                />
+                <div className="input-row">
+                  <textarea
+                    value={form.reflection}
+                    onChange={(event) => setForm({ ...form, reflection: event.target.value })}
+                    placeholder="What did you notice about your thinking?"
+                  />
+                  <button
+                    type="button"
+                    className={`voice-btn ${voiceField === 'reflection' ? 'listening' : ''}`}
+                    onClick={() => toggleVoiceInput('reflection')}
+                    aria-label={voiceField === 'reflection' ? 'Stop recording' : 'Start voice input'}
+                    title={SpeechRecognition ? 'Voice input' : 'Voice not supported'}
+                    disabled={!SpeechRecognition}
+                  >
+                    <Mic size={18} />
+                  </button>
+                </div>
               </label>
               <button className="primary" disabled={submitting}>
                 <Send size={18} />{submitting ? 'Mapping...' : 'Map My Reasoning'}

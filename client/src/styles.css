@@ -306,13 +306,13 @@ textarea {
   font-weight: 700;
 }
 
-.reasoning-input-row {
+.input-row {
   display: flex;
   gap: 8px;
   align-items: flex-start;
 }
 
-.reasoning-input-row textarea {
+.input-row textarea {
   flex: 1;
 }
 
